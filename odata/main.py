@@ -2,9 +2,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-from pages import index
-from pages import inventory
-from pages import marketing
+from pages import index, inventory, marketing, company
 
 print(dcc.__version__) # 0.6.0 or above is required
 
@@ -22,7 +20,10 @@ app.layout = html.Div([
         A dashboard for monitoring the data.
     '''),
     dcc.Location(id='url', refresh=False),
-    html.Div(id='page-content')
+    html.Div(id='page-content'),
+    dcc.Link('Company KPIs   ', href='/company'),
+    dcc.Link('Marketing   ', href='/marketing'),
+    dcc.Link('Inventory   ', href='/inventory'),
 ])
 
 # Page 1 callback
@@ -33,16 +34,21 @@ app.layout = html.Div([
 @app.callback(dash.dependencies.Output('marketing-content', 'children'),
               [dash.dependencies.Input('marketing-content', 'value')])
 
+# Page Company callback
+@app.callback(dash.dependencies.Output('company-content', 'children'),
+              [dash.dependencies.Input('company-content', 'value')])
+
 # Index Page callback
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
+
 def display_page(pathname):
     if pathname == '/inventory':
         return inventory.inventory_layout
     elif pathname == '/marketing':
         return marketing.marketing_layout
-    elif pathname == '/':
-        return overview.overview_layout
+    elif pathname == '/company':
+        return company.company_layout
     else:
         return '404'
 

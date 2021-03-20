@@ -6,21 +6,15 @@ import marketing
 
 marketing_layout = html.Div([
     html.H2(children='Marketing'),
-    # Marketing 500 g
     dcc.Graph(
-        id='marketing-500',
-        figure=marketing.marketingVisualization.getFigure("500")
+        id='marketing-area',
+        figure=marketing.marketingVisualization.getFigureByArea()
     ),
     
     dcc.Graph(
-        id='marketing-1',
-        figure=marketing.marketingVisualization.getFigure("1")
+        id='marketing-area',
+        figure=marketing.marketingVisualization.getFigureByTime("")
     ),
     
-    html.Div(id='marketing-content'),
-    html.Br(),
-    dcc.Link('Inventory', href='/inventory'),
-    html.Br(),
-    dcc.Link('Go back to home', href='/'),
-
+    html.Div(id='marketing-content')
 ])

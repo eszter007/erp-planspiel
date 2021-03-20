@@ -2,6 +2,7 @@
 import requests
 import pyodata
 import pandas as pd
+import plotly.graph_objects as go
 
 #classes
 from service import service
@@ -33,14 +34,26 @@ class marketingData:
 import plotly.express as px
 
 class marketingVisualization:
-    def getFigure(size):
+        
+    def getFigureByTime(size):
         data = marketingData.fetch(size)
         df = pd.DataFrame({
             "Amount": data[3],
             "Date": data[0],
             "Material": data[1],
-            "Areas" : data[2]
+            "Area" : data[2]
         })
-
-        fig = px.line(df, x="Date", y="Amount", color="Material")
+        fig = px.line(df, x="Date", y="Amount", color="Material", hover_name="Area")
         return fig
+    
+    def getFigureByArea():
+        data = marketingData.fetch("")
+        df = pd.DataFrame({
+            "Amount": data[3],
+            "Date": data[0],
+            "Material": data[1],
+            "Area" : data[2]
+        })
+        fig = px.bar(df, x="Date", y="Amount", color="Area", hover_name="Material")
+        return fig
+        
