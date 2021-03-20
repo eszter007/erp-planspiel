@@ -7,9 +7,10 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-import plotly.express as px
-import pandas as pd
+
+#classes
 import service
+import inventory
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -17,13 +18,6 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
-df = pd.DataFrame({
-    "Amount": service.inventory.fetch()[2],
-    "Date":service.inventory.fetch()[3],
-    "Material":service.inventory.fetch()[0]
-})
-
-fig = px.bar(df, x="Date", y="Amount", color="Material")
 
 app.layout = html.Div(children=[
     html.H1(children='ERP Planspiel'),
@@ -31,10 +25,17 @@ app.layout = html.Div(children=[
     html.Div(children='''
         A dashboard for monitoring the data.
     '''),
-
+    
+    html.H2(children='Inventory'),
+    # Inventory 500 g
     dcc.Graph(
-        id='example-graph',
-        figure=fig
+        id='inventory-500',
+        figure=inventory.inventoryVisualization.getFigure("500")
+    ),
+    
+    dcc.Graph(
+        id='inventory-1',
+        figure=inventory.inventoryVisualization.getFigure("1")
     )
 ])
 
