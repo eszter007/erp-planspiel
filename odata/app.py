@@ -6,10 +6,7 @@ from pages import index, inventory, marketing, company, material, market, suppli
 
 print(dcc.__version__) # 0.6.0 or above is required
 
-app = dash.Dash(
-    __name__
-)
-
+app = dash.Dash( __name__)
 server = app.server
 
 app.config.suppress_callback_exceptions = True
