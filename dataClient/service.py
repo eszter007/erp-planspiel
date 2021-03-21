@@ -8,5 +8,4 @@ class service:
 
     session = requests.Session()
     session.auth = ('C_3', 'etc-oxide-GARBAGE')
-    
     theservice = pyodata.Client(SERVICE_URL, session)
