@@ -4,7 +4,8 @@ import pyodata
 import pandas as pd
 
 #classes
-from service import service
+from app.service import service
+from app.helper import helper as h
 
 class materialData:
     
@@ -17,7 +18,7 @@ class materialData:
         for p_ in p.execute():
             material = p_.MATERIAL_DESCRIPTION
             date = p_.SIM_DATE
-            date = service.formatDate(date)
+            date = h.formatDate(date)
             quantity = p_.QUANTITY_ABS
             materialType = p_.MATERIAL_TYPE 
             unit = p_.UNIT
@@ -28,7 +29,7 @@ class materialData:
                 materials.append(material)
         return [materials, dates, quantities]
 
-#
+# Visualization
 import plotly.express as px
 
 class materialVisualization:

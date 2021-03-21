@@ -5,7 +5,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 #classes
-from service import service
+from app.service import service
 
 class marketData:
     
@@ -28,7 +28,7 @@ class marketData:
             prices.append(float(price))
         return [materials, areas, quantities, prices]
 
-#
+# Visualization
 import plotly.express as px
 
 class marketVisualization:

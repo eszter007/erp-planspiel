@@ -4,7 +4,8 @@ import pyodata
 import pandas as pd
 
 #classes
-from service import service
+from app.service import service
+from app.helper import helper as h
 
 class supplierData:
     
@@ -18,7 +19,7 @@ class supplierData:
         for p_ in p.execute():
             material = p_.MATERIAL_DESCRIPTION
             date = p_.SIM_DATE
-            date = service.formatDate(date)
+            date = h.formatDate(date)
             price = p_.NET_PRICE
             vendor = p_.VENDOR_NAME
             

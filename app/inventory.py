@@ -4,7 +4,8 @@ import pyodata
 import pandas as pd
 
 #classes
-from service import service
+from app.service import service
+from app.helper import helper as h
 
 class inventoryData:
     
@@ -18,7 +19,7 @@ class inventoryData:
         for p_ in p.execute():
             description = p_.MATERIAL_DESCRIPTION 
             date = p_.SIM_DATE
-            date = service.formatDate(date)
+            date = h.formatDate(date)
             balance = p_.INVENTORY_OPENING_BALANCE
             materialType = p_.MATERIAL_TYPE
             
@@ -28,7 +29,7 @@ class inventoryData:
                 dates.append(date)
         return [materials, types, balances, dates]
 
-#
+# Visualization
 import plotly.express as px
 
 class inventoryVisualization:

@@ -2,21 +2,21 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-import market
+from app.market import marketVisualization as marketVis
 
 market_layout = html.Div([
     html.H2(children='Market'),
     dcc.Graph(
         id='market-per-area-and-material',
-        figure=market.marketVisualization.getQuantityPerAreaAndMaterial()
+        figure=marketVis.getQuantityPerAreaAndMaterial()
     ),
     dcc.Graph(
         id='market-price-quantitiy',
-        figure=market.marketVisualization.getPriceAndAmount()
+        figure=marketVis.getPriceAndAmount()
     ),
     dcc.Graph(
         id='market-price-averages',
-        figure=market.marketVisualization.getAveragePrice()
+        figure=marketVis.getAveragePrice()
     ),
     dcc.Interval(
         id='interval-component',

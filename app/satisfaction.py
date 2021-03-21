@@ -5,7 +5,8 @@ import pandas as pd
 import plotly.graph_objects as go
 
 #classes
-from service import service
+from app.service import service
+from app.helper import helper as h
 
 class satisfactionData:
     
@@ -19,7 +20,7 @@ class satisfactionData:
         for p_ in p.execute():
             description = p_.MATERIAL_DESCRIPTION 
             date = p_.SIM_DATE
-            date = service.formatDate(date)
+            date = h.formatDate(date)
             area = p_.AREA
             score_0=p_.SCORE_0
             score_1=p_.SCORE_1
@@ -45,7 +46,7 @@ class satisfactionData:
             areas.append(area)
         return [dates, averageScore, materials, areas]
 
-#
+# Visualization
 import plotly.express as px
 
 class satisfactionVisualization:

@@ -5,7 +5,8 @@ import pandas as pd
 import plotly.graph_objects as go
 
 #classes
-from service import service
+from app.service import service
+from app.helper import helper as h
 
 class marketingData:
     
@@ -19,7 +20,7 @@ class marketingData:
         for p_ in p.execute():
             description = p_.MATERIAL_DESCRIPTION 
             date = p_.SIM_DATE
-            date = service.formatDate(date)
+            date = h.formatDate(date)
             area = p_.AREA
             amount = p_.AMOUNT
             
@@ -30,7 +31,7 @@ class marketingData:
                 areas.append(area)
         return [dates, materials, areas, amounts]
 
-#
+# Visualization
 import plotly.express as px
 
 class marketingVisualization:
