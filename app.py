@@ -17,7 +17,7 @@ app.layout = html.Div([
     html.Div(children='''
         A dashboard for monitoring the data.
     '''),
-    dcc.Location(id='url', refresh=False),
+    dcc.Location(id='url', refresh=True),
     html.Div(id='page-content'),
     dcc.Link('Company KPIs   ', href='/company'),
     dcc.Link('Market   ', href='/market'),
