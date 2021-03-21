@@ -9,7 +9,8 @@ print(dcc.__version__) # 0.6.0 or above is required
 app = dash.Dash(
     __name__
 )
-app.scripts.config.serve_locally = False
+
+server = app.server
 
 app.config.suppress_callback_exceptions = True
 
