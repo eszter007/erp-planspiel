@@ -14,6 +14,10 @@ market_layout = html.Div([
         id='market-price-quantitiy',
         figure=market.marketVisualization.getPriceAndAmount()
     ),
+    dcc.Graph(
+        id='market-price-averages',
+        figure=market.marketVisualization.getAveragePrice()
+    ),
     dcc.Interval(
         id='interval-component',
         interval=1*10000, # in milliseconds
