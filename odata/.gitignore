@@ -1,9 +1,2 @@
 # created by virtualenv automatically
-.Python
-.bin
-.lib*
-.pyvenv.cfg
-venv
-*.pyc
-.DS_Store
-.env
+*
