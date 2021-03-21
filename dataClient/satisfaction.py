@@ -5,8 +5,8 @@ import pandas as pd
 import plotly.graph_objects as go
 
 #classes
-from app.service import service
-from app.helper import helper as h
+from dataClient.service import service
+from dataClient.helper import helper as h
 
 class satisfactionData:
     

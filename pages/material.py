@@ -2,7 +2,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-from app.material import materialVisualization as matVis
+from dataClient.material import materialVisualization as matVis
 
 material_layout = html.Div([
     html.H2(children='Material'),

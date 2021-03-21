@@ -4,8 +4,8 @@ import pyodata
 import pandas as pd
 
 #classes
-from app.service import service
-from app.helper import helper as h
+from dataClient.service import service
+from dataClient.helper import helper as h
 
 class supplierData:
     

@@ -2,8 +2,8 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-from app.inventory import inventoryVisualization as invVis
-from app.marketing import marketingVisualization as markVis
+from dataClient.inventory import inventoryVisualization as invVis
+from dataClient.marketing import marketingVisualization as markVis
 
 inventory_layout = html.Div([
     html.H2(children='Inventory'),

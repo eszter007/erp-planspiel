@@ -2,7 +2,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-from app.suppliers import supplierVisualization as supVis
+from dataClient.suppliers import supplierVisualization as supVis
 
 suppliers_layout = html.Div([
     html.H2(children='Suppliers'),

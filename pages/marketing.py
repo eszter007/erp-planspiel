@@ -2,7 +2,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-from app.marketing import marketingVisualization as markVis
+from dataClient.marketing import marketingVisualization as markVis
 
 marketing_layout = html.Div([
     html.H2(children='Marketing'),

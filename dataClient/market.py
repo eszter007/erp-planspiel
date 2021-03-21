@@ -5,7 +5,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 #classes
-from app.service import service
+from dataClient.service import service
 
 class marketData:
     
