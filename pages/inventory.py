@@ -33,5 +33,10 @@ inventory_layout = html.Div([
         id='marketing-1',
         figure=marketing.marketingVisualization.getFigureByTime("1")
     ),
+    dcc.Interval(
+        id='interval-component',
+        interval=1*10000, # in milliseconds
+        n_intervals=0
+    ),
     html.Div(id='inventory-content')
 ])

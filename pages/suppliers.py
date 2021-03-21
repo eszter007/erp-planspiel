@@ -10,5 +10,10 @@ suppliers_layout = html.Div([
         id='suppliersPerTime',
         figure=suppliers.supplierVisualization.getFigure()
     ),
+    dcc.Interval(
+        id='interval-component',
+        interval=1*10000, # in milliseconds
+        n_intervals=0
+    ),
     html.Div(id='suppliers-content')
 ])

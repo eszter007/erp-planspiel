@@ -9,6 +9,11 @@ satisfaction_layout = html.Div([
     dcc.Graph(
         id='satisfaction-time',
         figure=satisfaction.satisfactionVisualization.getFigure()
+    ),
+    dcc.Interval(
+        id='interval-component',
+        interval=1*10000, # in milliseconds
+        n_intervals=0
     ), 
     html.Div(id='satisfaction-content')
 ])

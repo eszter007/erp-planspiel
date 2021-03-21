@@ -24,5 +24,10 @@ material_layout = html.Div([
         id='material-quantity-1',
         figure=material.materialVisualization.getFigure("Finished Product", "", "1kg")
     ),
+    dcc.Interval(
+        id='interval-component',
+        interval=1*10000, # in milliseconds
+        n_intervals=0
+    ),
     html.Div(id='material-content')
 ])

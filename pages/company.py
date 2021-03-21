@@ -10,5 +10,10 @@ company_layout = html.Div([
         id='company-valuation',
         figure=company.companyVisualization.getFigure()
     ),
+    dcc.Interval(
+        id='interval-component',
+        interval=1*10000, # in milliseconds
+        n_intervals=0
+    ),
     html.Div(id='company-content')
 ])
