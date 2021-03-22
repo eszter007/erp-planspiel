@@ -18,5 +18,7 @@ index_page = html.Div([
     html.Br(),
     dcc.Link('Suppliers', href='/suppliers'),
     html.Br(),
-    dcc.Link('Satisfaction', href='/satisfaction')
+    dcc.Link('Satisfaction', href='/satisfaction'),
+    html.Br(),
+    dcc.Link('Sales', href='/sales')
 ])
