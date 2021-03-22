@@ -42,7 +42,7 @@ app.layout = html.Div(className='page-container', children=[
         html.P("Blueberry - F02: 500g // F12: 1kg // R02 Blueberries"),
         html.P("Strawberry - F03: 500g // F13: 1kg // R03 Strawberries"),
         html.P("Raisin - F04: 500g // F14: 1kg // R04: Raisins"),
-        html.P("Original Fruit -  F05: 500g // F15: 1kg // R05: Wheat"),
+        html.P("Original -  F05: 500g // F15: 1kg // R05: Wheat"),
         html.P("Mixed Fruit - F06: 500g // F16: 1kg // R06: Oats"),
         html.P("P01: Large Box, P02: Large Bag (1kg)"),
         html.P("P03: Small Box, P02: Small Bag (500g)")
