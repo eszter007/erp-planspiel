@@ -6,17 +6,17 @@ from dataClient.sales import salesVisualization as salesVis
 
 sales_layout = html.Div([
     html.H2(children='Sales'),
-    html.H3(children='Amount Sold'),
+    html.H3(children='Amount of Products Sold'),
     dcc.Graph(
         id='sales-sold-time',
         figure=salesVis.getAmountSoldFigure()
     ),
-    html.H3(children='Margin'),
+    html.H3(children='Margin per Product'),
     dcc.Graph(
         id='sales-margin',
         figure=salesVis.getMarginFigure()
     ),
-    html.H3(children='Sales per Area'),
+    html.H3(children='Total Sales per Area'),
     dcc.Graph(
         id='sales-per-area',
         figure=salesVis.getSalePerAreaFigure()

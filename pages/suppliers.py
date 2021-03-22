@@ -6,6 +6,7 @@ from dataClient.suppliers import supplierVisualization as supVis
 
 suppliers_layout = html.Div([
     html.H2(children='Suppliers'),
+    html.H3(children='Suppliers\' Prices over Time'),
     dcc.Graph(
         id='suppliersPerTime',
         figure=supVis.getFigure()

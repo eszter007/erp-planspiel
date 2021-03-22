@@ -7,19 +7,23 @@ from dataClient.material import materialVisualization as matVis
 material_layout = html.Div([
     html.H2(children='Material'),
     html.H3(children="Raw materials"),
+    html.H4(children="Ingredients"),
     dcc.Graph(
         id='material-raw-ingredients',
         figure=matVis.getFigure("Raw materials", "KG", "")
     ),
+    html.H4(children="Packaging"),
     dcc.Graph(
         id='material-raw-packaging',
         figure=matVis.getFigure("Raw materials", "ST", "")
     ),
     html.H3(children="Finished Products"),
+    html.H4(children="500g Muesli"),
     dcc.Graph(
         id='material-quantity-500',
         figure=matVis.getFigure("Finished Product", "", "500")
     ),
+    html.H4(children="1kg Muesli"),
     dcc.Graph(
         id='material-quantity-1',
         figure=matVis.getFigure("Finished Product", "", "1kg")

@@ -2,32 +2,41 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+import dash_bootstrap_components as dbc
 from pages import index, inventory, marketing, company, material, market, suppliers, satisfaction, sales
 
 print(dcc.__version__) # 0.6.0 or above is required
 
-app = dash.Dash( __name__)
+app = dash.Dash( __name__, external_stylesheets=[dbc.themes.BOOTSTRAP, 'https://codepen.io/chriddyp/pen/bWLwgP.css'])
 server = app.server
 
 app.config.suppress_callback_exceptions = True
 
-app.layout = html.Div([
+app.layout = html.Div(className='page-container', children=[
     html.H1('ERP Planspiel'),
-
     html.Div(children='''
         A dashboard for monitoring the data.
     '''),
+    html.Div(
+                className='navigation',
+                children=[
+                    dbc.Nav([
+                        dbc.NavItem(dbc.NavLink("Company KPIs", href="/company")),
+                        dbc.NavItem(dbc.NavLink("Sales", href="/sales")),
+                        dbc.NavItem(dbc.NavLink("Market", href="/market")),
+                        dbc.NavItem(dbc.NavLink("Marketing", href="/marketing")),
+                        dbc.NavItem(dbc.NavLink("Inventory", href="/inventory")),
+                        dbc.NavItem(dbc.NavLink("Material", href="/material")),
+                        dbc.NavItem(dbc.NavLink("Suppliers", href="/suppliers")),
+                        dbc.NavItem(dbc.NavLink("Satisfaction", href="/satisfaction"))
+                    ],
+                        pills=True,
+                    )
+                ]
+    ),
     html.Div(id='page-content'),
-    dcc.Link('Company KPIs   ', href='/company'),
-    dcc.Link('Market   ', href='/market'),
-    dcc.Link('Marketing   ', href='/marketing'),
-    dcc.Link('Inventory   ', href='/inventory'),
-    dcc.Link('Material   ', href='/material'),
-    dcc.Link('Suppliers   ', href='/suppliers'),
-    dcc.Link('Satisfaction   ', href='/satisfaction'),
-    dcc.Link('Sales   ', href='/sales'),
     dcc.Location(id='url', refresh=False),
-    html.Div([
+    html.Div(className='Reminder', children=[
         html.P("Reminder:"),
         html.P("Nut - F01: 500g // F11: 1kg // R01 Nuts"),
         html.P("Blueberry - F02: 500g // F12: 1kg // R02 Blueberries"),

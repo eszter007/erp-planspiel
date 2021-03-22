@@ -6,14 +6,17 @@ from dataClient.market import marketVisualization as marketVis
 
 market_layout = html.Div([
     html.H2(children='Market'),
+    html.H3(children='Popular Products per Area'),
     dcc.Graph(
         id='market-per-area-and-material',
         figure=marketVis.getQuantityPerAreaAndMaterial()
     ),
+    html.H3(children='Demand at Prices'),
     dcc.Graph(
         id='market-price-quantitiy',
         figure=marketVis.getPriceAndAmount()
     ),
+    html.H3(children='Price Ranges (Entire time)'),
     dcc.Graph(
         id='market-price-averages',
         figure=marketVis.getAveragePrice()

@@ -9,12 +9,14 @@ inventory_layout = html.Div([
     html.H2(children='Inventory'),
     
     html.H3(children='500 g Muesli'),
+    html.H4(children='Inventory of 500g Muesli'),
     # Inventory 500 g
     dcc.Graph(
         id='inventory-500',
         figure=invVis.getFigure("500")
     ),
     
+    html.H4(children='Marketing of 500g Muesli'),
     # Marketing 500 g
     dcc.Graph(
         id='marketing-500',
@@ -22,6 +24,7 @@ inventory_layout = html.Div([
     ),
     
     html.H3(children='1kg Muesli'),
+    html.H4(children='Inventory of 1kg Muesli'),
     # 1 kg Inventory
     dcc.Graph(
         id='inventory-1',
@@ -29,6 +32,7 @@ inventory_layout = html.Div([
     ),
     
     # Marketing 1kg
+    html.H4(children='Marketing of 1kg Muesli'),
     dcc.Graph(
         id='marketing-1',
         figure=markVis.getFigureByTime("1")

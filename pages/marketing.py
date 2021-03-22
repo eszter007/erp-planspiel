@@ -6,11 +6,12 @@ from dataClient.marketing import marketingVisualization as markVis
 
 marketing_layout = html.Div([
     html.H2(children='Marketing'),
+    html.H3(children='Spend per Area'),
     dcc.Graph(
         id='marketing-area',
         figure=markVis.getFigureByArea()
     ),
-    
+    html.H3(children='Spend per Product'),
     dcc.Graph(
         id='marketing-area',
         figure=markVis.getFigureByTime("")

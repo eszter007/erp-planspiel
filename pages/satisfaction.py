@@ -6,6 +6,7 @@ from dataClient.satisfaction import satisfactionVisualization as sVis
 
 satisfaction_layout = html.Div([
     html.H2(children='Satisfaction'),
+    html.H3(children='Average Customer Satisfaction per Product'),
     dcc.Graph(
         id='satisfaction-time',
         figure=sVis.getFigure()

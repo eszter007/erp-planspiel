@@ -1,6 +1,15 @@
 body {
     font-family: sans-serif;
 }
-h1, h2, h3, h4, h5, h6 {
-    color: DodgerBlue
+
+h1, h2 {
+    font-weight: bold;
+}
+
+h1, h2, h3 {
+    color: DodgerBlue;
+}
+
+h4 {
+    font-size: large;
 }
