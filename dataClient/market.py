@@ -1,11 +1,14 @@
 #odata
 import requests
 import pyodata
+#plotly
 import pandas as pd
 import plotly.graph_objects as go
-
+from itertools import cycle
 #classes
 from dataClient.service import service
+
+palette = ["#636EFA", "#EF553B", "#00CC96", "#AB63FA", "#FFA15A", "#19D3F3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52", "#0CBABA", "#861657"]
 
 class marketData:
     
@@ -45,7 +48,7 @@ class marketVisualization:
                      color="Material", 
                      hover_data=["Area", "Quantity", "Price"], 
                      barmode='group', 
-                     color_discrete_sequence=px.colors.qualitative.Set3)
+                     color_discrete_sequence=palette)
         return fig
     
     def getMostPopularProduct():
@@ -76,7 +79,7 @@ class marketVisualization:
                          color="Material", 
                          size="Quantity", 
                          hover_data=["Area", "Quantity", "Price"], 
-                         color_discrete_sequence=px.colors.qualitative.Set3)
+                         color_discrete_sequence=palette)
         return fig
     
     def getAveragePrice():
