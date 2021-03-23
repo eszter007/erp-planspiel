@@ -16,6 +16,11 @@ company_layout = html.Div([
         id='company-debt-loading-profits',
         figure=vis.getDebtLoadingProfitsFigure()
     ),
+    html.H3(children='Cash, Account Receivables, Payables'),
+    dcc.Graph(
+        id='company-debt-loading-profits',
+        figure=vis.getCashProfitsFigure()
+    ),
     dcc.Interval(
         id='interval-component',
         interval=1*10000, # in milliseconds

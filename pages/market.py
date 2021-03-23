@@ -6,6 +6,11 @@ from dataClient.market import marketVisualization as marketVis
 
 market_layout = html.Div([
     html.H2(children='Market'),
+    html.H3(children='Most Popular Products'),
+    dcc.Graph(
+        id='market-popularity',
+        figure=marketVis.getMostPopularProduct()
+    ),
     html.H3(children='Popular Products per Area'),
     dcc.Graph(
         id='market-per-area-and-material',

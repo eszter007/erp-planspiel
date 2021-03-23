@@ -40,7 +40,27 @@ class marketVisualization:
             "Area": data[1],
             "Price": data[3]
         })
-        fig = px.bar(df, x="Area", y="Quantity", color="Material", hover_data=["Area", "Quantity", "Price"], barmode='group')
+        fig = px.bar(df, x="Area", 
+                     y="Quantity", 
+                     color="Material", 
+                     hover_data=["Area", "Quantity", "Price"], 
+                     barmode='group', 
+                     color_discrete_sequence=px.colors.qualitative.Set3)
+        return fig
+    
+    def getMostPopularProduct():
+        data = marketData.fetch()
+        df = pd.DataFrame({
+            "Quantity": data[2],
+            "Material": data[0],
+            "Price": data[3],
+            "Area": data[1]
+        })
+        df = df.sort_values(["Quantity"]).reset_index(drop=True)
+        fig = px.bar(df, x="Material", 
+                     y="Quantity", 
+                     color="Area", 
+                     hover_data=["Price"])
         return fig
     
     def getPriceAndAmount():
@@ -51,7 +71,12 @@ class marketVisualization:
             "Area": data[1],
             "Price": data[3]
         })
-        fig = px.scatter(df, x="Price", y="Quantity", color="Material", size="Quantity", hover_data=["Area", "Quantity", "Price"])
+        fig = px.scatter(df, x="Price", 
+                         y="Quantity", 
+                         color="Material", 
+                         size="Quantity", 
+                         hover_data=["Area", "Quantity", "Price"], 
+                         color_discrete_sequence=px.colors.qualitative.Set3)
         return fig
     
     def getAveragePrice():

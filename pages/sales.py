@@ -16,6 +16,11 @@ sales_layout = html.Div([
         id='sales-margin',
         figure=salesVis.getMarginFigure()
     ),
+    html.H3(children='Most Popular Product Sold'),
+    dcc.Graph(
+        id='sales-most-popular',
+        figure=salesVis.getMostPopularProductFigure()
+    ),
     html.H3(children='Total Sales per Area'),
     dcc.Graph(
         id='sales-per-area',

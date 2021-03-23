@@ -79,3 +79,14 @@ class salesVisualization:
 
         fig = px.bar(df, x="Area", y="Quantity", color="Material", hover_data=["Price"], barmode="group")
         return fig
+    
+    def getMostPopularProductFigure():
+        df = pd.DataFrame({
+            "Material": salesData.fetch()[0],
+            "Area": salesData.fetch()[6],
+            "Quantity": salesData.fetch()[2],
+            "Price": salesData.fetch()[3]
+        })
+        df = df.sort_values(["Quantity"]).reset_index(drop=True)
+        fig = px.bar(df, x="Material", y="Quantity", color="Area", hover_data=["Price"])
+        return fig

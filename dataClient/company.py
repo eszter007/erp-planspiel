@@ -82,4 +82,22 @@ class companyVisualization:
                       hover_data=["Credit Rating"],
                       labels={"value": "Amount",
                         "variable": "KPI"})
+        
+        return fig
+    
+    def getCashProfitsFigure():
+        df = pd.DataFrame({
+            "Profit": companyData.fetchCompanyValuation()[5],
+            "Cash": companyData.fetchCompanyValuation()[1],
+            "Account Receivable": companyData.fetchCompanyValuation()[2],
+            "Account Payables": companyData.fetchCompanyValuation()[4],
+            "Credit Rating": companyData.fetchCompanyValuation()[7],
+            "Date": companyData.fetchCompanyValuation()[0]
+        })
+
+        fig = px.line(df, x="Date", 
+                      y=["Profit", "Cash", "Account Receivable", "Account Payables"],
+                      hover_data=["Credit Rating"],
+                      labels={"value": "Amount",
+                        "variable": "KPI"})
         return fig
