@@ -125,7 +125,7 @@ class marketVisualization:
         df = pd.DataFrame.from_dict(muesliDict, orient="index", columns=["minimumPrice", "maximumPrice", "averagePrice"])
         df = df.sort_values(df.columns[0])
         
-        fig = px.bar(df, x=muesliDict.keys(), y=["minimumPrice","maximumPrice", "averagePrice"], 
+        fig = px.bar(df, x=muesliDict.keys(), y=["minimumPrice", "averagePrice", "maximumPrice"], 
                      barmode="group",
                      labels={
                         "x": "Products",
