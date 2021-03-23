@@ -25,7 +25,7 @@ class supplierData:
             
             materials.append(material)
             dates.append(date)
-            prices.append(price)
+            prices.append(float(price))
             vendors.append(vendor)
         return [materials, dates, prices, vendors]
 

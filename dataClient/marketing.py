@@ -44,7 +44,7 @@ class marketingVisualization:
             "Material": data[1],
             "Area" : data[2]
         })
-        fig = px.line(df, x="Date", y="Amount", color="Material", hover_name="Area")
+        fig = px.bar(df, x="Date", y="Amount", color="Material", hover_name="Area")
         return fig
     
     def getFigureByArea():
