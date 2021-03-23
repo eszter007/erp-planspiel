@@ -16,6 +16,8 @@ class marketData:
         areas = []
         quantities = []
         prices = []
+        periods = []
+        dcs = []
     
         p = service.theservice.entity_sets.Market.get_entities()
         for p_ in p.execute():
@@ -23,12 +25,19 @@ class marketData:
             area = p_.AREA
             quantity = p_.QUANTITY
             price = p_.AVERAGE_PRICE
+            period = p_.SIM_PERIOD
+            period = int(period)
+            dc = p_.DISTRIBUTION_CHANNEL
+            dc = h.getCustomer(dc)
+            
             
             materials.append(description)
             areas.append(area)
             quantities.append(float(quantity))
             prices.append(float(price))
-        return [materials, areas, quantities, prices]
+            periods.append(period)
+            dcs.append(dc)
+        return [materials, areas, quantities, prices, periods, dcs]
 
 # Visualization
 import plotly.express as px
@@ -132,6 +141,59 @@ class marketVisualization:
                         "value": "Price",
                         "variable": "Type"})
         return fig
+    
+    # Over time data
+    def getPricesOverTime():
+        data = marketData.fetch()
+        df = pd.DataFrame({
+            "Material": data[0],
+            "Quantity": data[2],
+            "Price": data[3],
+            "Period": data[4]
+        })
+        df = df[df.Price != 0]
+        df = df.sort_values("Material")
         
-
-marketVisualization.getAveragePrice()
+        fig = px.scatter(df, x="Period", 
+                    y="Price", 
+                    color="Material", 
+                    size="Quantity", 
+                    color_discrete_sequence=h.palette)
+        return fig
+    
+    def getPopularityOverTime():
+        data = marketData.fetch()
+        df = pd.DataFrame({
+            "Material": data[0],
+            "Quantity": data[2],
+            "Price": data[3],
+            "Period": data[4]
+        })
+        df = df[df.Price != 0]
+        df = df.sort_values("Material")
+        
+        fig = px.bar(df, x="Period", 
+                    y="Quantity", 
+                    color="Material", 
+                    hover_data=["Price"], 
+                    color_discrete_sequence=h.palette)
+        return fig
+    
+    def getPurchaseVolumePeriodsFigure():
+        data = marketData.fetch()
+        df = pd.DataFrame({
+            "Material": data[0],
+            "Quantity": data[2],
+            "Customer": data[5],
+            "Price": data[3],
+            "Period": data[4]
+        })
+        df = df[df.Price != 0]
+        df = df.sort_values("Material")
+        
+        fig = px.bar(df, x="Period", 
+                    y="Quantity", 
+                    color="Customer", 
+                    hover_data=["Price", "Quantity"],
+                    color_discrete_sequence=h.palette)
+        return fig

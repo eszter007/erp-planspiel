@@ -7,3 +7,13 @@ class helper:
     def formatDate(date):
         date = datetime.strptime(date, '%m/%d').replace(year=2021)
         return date
+    
+    def getCustomer(customer):
+        if customer == "12":
+            customer = "Grocery Chains"
+        elif customer == "10": 
+            customer = "Hypermarkets"
+        elif customer == "14":
+            customer = "Independent Grocers"
+            
+        return customer

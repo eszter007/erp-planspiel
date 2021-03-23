@@ -26,6 +26,22 @@ market_layout = html.Div([
         id='market-price-averages',
         figure=marketVis.getAveragePrice()
     ),
+    html.H3(children='Data per Period'),
+    html.H4(children='Price per Period'),
+    dcc.Graph(
+        id='market-price-time',
+        figure=marketVis.getPricesOverTime()
+    ),
+    html.H4(children='Popularity (Sold Quantity) per Period'),
+    dcc.Graph(
+        id='market-quantity-period',
+        figure=marketVis.getPopularityOverTime()
+    ),
+    html.H4(children='Purchase Volume of Customers per Period'),
+    dcc.Graph(
+        id='market-customers-period',
+        figure=marketVis.getPurchaseVolumePeriodsFigure()
+    ),
     dcc.Interval(
         id='interval-component',
         interval=1*10000, # in milliseconds
