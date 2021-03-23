@@ -60,7 +60,8 @@ class marketVisualization:
             "Price": data[3],
             "Area": data[1]
         })
-        df = df.sort_values(["Quantity"]).reset_index(drop=True)
+        df = df.sort_values("Material")
+        
         fig = px.bar(df, x="Material", 
                      y="Quantity", 
                      color="Area", 
