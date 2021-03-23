@@ -32,13 +32,7 @@ class salesData:
             cost = float(cost) / quantity
             area = p_.AREA
             customer = p_.DISTRIBUTION_CHANNEL
-            
-            if customer == "12":
-                customer = "Grocery Chains"
-            elif customer == "10":
-                customer = "Hypermarkets"
-            elif customer == "14":
-                customer = "Independent Grocers"
+            customer = h.getCustomer(customer)
             
             materials.append(material)
             dates.append(date)
@@ -154,4 +148,6 @@ class salesVisualization:
         df = df.sort_values("Material")
         
         fig = px.scatter(df, x="Date", y="Price", hover_data=["Customer"], color="Material", color_discrete_sequence=h.palette)
+        fig.update_yaxes(dtick=0.5) 
+        
         return fig

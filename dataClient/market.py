@@ -93,6 +93,8 @@ class marketVisualization:
                          size="Quantity", 
                          hover_data=["Area", "Quantity", "Price"], 
                          color_discrete_sequence=h.palette)
+        fig.update_xaxes(dtick=0.5) 
+        
         return fig
     
     def getAveragePrice():
@@ -159,6 +161,9 @@ class marketVisualization:
                     color="Material", 
                     size="Quantity", 
                     color_discrete_sequence=h.palette)
+        fig.update_yaxes(dtick=0.5) 
+        fig.update_xaxes(dtick=1) 
+        
         return fig
     
     def getPopularityOverTime():
