@@ -6,10 +6,20 @@ from dataClient.sales import salesVisualization as salesVis
 
 sales_layout = html.Div([
     html.H2(children='Sales'),
-    html.H3(children='Amount of Products Sold'),
+    html.H3(children='Own Prices over Time'),
+    dcc.Graph(
+        id='ownPrices',
+        figure=salesVis.getOwnPricesOverTime()
+    ),
+    html.H3(children='Amount of Products Sold per Product'),
     dcc.Graph(
         id='sales-sold-time',
         figure=salesVis.getAmountSoldFigure()
+    ),
+    html.H3(children='Amount of Products Sold per Distribution Channel'),
+    dcc.Graph(
+        id='sales-sold-time-dc',
+        figure=salesVis.getAmountSoldPerDistributionChannelFigure()
     ),
     html.H3(children='Margin per Product'),
     dcc.Graph(

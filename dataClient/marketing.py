@@ -44,7 +44,9 @@ class marketingVisualization:
             "Material": data[1],
             "Area" : data[2]
         })
-        fig = px.bar(df, x="Date", y="Amount", color="Material", hover_name="Area")
+        df = df.sort_values("Material")
+        
+        fig = px.bar(df, x="Date", y="Amount", color="Material", hover_name="Area", color_discrete_sequence=h.palette)
         return fig
     
     def getFigureByArea():
@@ -55,6 +57,8 @@ class marketingVisualization:
             "Material": data[1],
             "Area" : data[2]
         })
+        df = df.sort_values("Material")
+        
         fig = px.bar(df, x="Date", y="Amount", color="Area", hover_name="Material")
         return fig
         

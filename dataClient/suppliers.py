@@ -40,6 +40,6 @@ class supplierVisualization:
             "Price":supplierData.fetch()[2],
             "Vendor":supplierData.fetch()[3],
         })
-
+        
         fig = px.line(df, x="Date", y="Price", color="Material", hover_data=["Material", "Price", "Vendor"])
         return fig

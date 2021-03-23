@@ -39,6 +39,7 @@ class inventoryVisualization:
             "Date": inventoryData.fetch(size)[3],
             "Material": inventoryData.fetch(size)[0]
         })
+        df = df.sort_values("Material")
 
         fig = px.bar(df, x="Date", y="Amount", color="Material")
         return fig

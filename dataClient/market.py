@@ -7,8 +7,7 @@ import plotly.graph_objects as go
 from itertools import cycle
 #classes
 from dataClient.service import service
-
-palette = ["#636EFA", "#EF553B", "#00CC96", "#AB63FA", "#FFA15A", "#19D3F3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52", "#0CBABA", "#861657"]
+from dataClient.helper import helper as h
 
 class marketData:
     
@@ -43,12 +42,14 @@ class marketVisualization:
             "Area": data[1],
             "Price": data[3]
         })
+        df = df.sort_values("Material")
+        
         fig = px.bar(df, x="Area", 
                      y="Quantity", 
                      color="Material", 
                      hover_data=["Area", "Quantity", "Price"], 
                      barmode='group', 
-                     color_discrete_sequence=palette)
+                     color_discrete_sequence=h.palette)
         return fig
     
     def getMostPopularProduct():
@@ -74,12 +75,14 @@ class marketVisualization:
             "Area": data[1],
             "Price": data[3]
         })
+        df = df.sort_values("Material")
+        
         fig = px.scatter(df, x="Price", 
                          y="Quantity", 
                          color="Material", 
                          size="Quantity", 
                          hover_data=["Area", "Quantity", "Price"], 
-                         color_discrete_sequence=palette)
+                         color_discrete_sequence=h.palette)
         return fig
     
     def getAveragePrice():
@@ -119,6 +122,7 @@ class marketVisualization:
             muesliDict[key] = [muesliDict[key][0], muesliDict[key][1], muesliDict[key][3]/muesliDict[key][2]]
         
         df = pd.DataFrame.from_dict(muesliDict, orient="index", columns=["minimumPrice", "maximumPrice", "averagePrice"])
+        df = df.sort_values(df.columns[0])
         
         fig = px.bar(df, x=muesliDict.keys(), y=["minimumPrice","maximumPrice", "averagePrice"], 
                      barmode="group",

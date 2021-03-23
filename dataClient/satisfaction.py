@@ -58,5 +58,7 @@ class satisfactionVisualization:
             "Material" : data[2],
             "Area" : data[3]
         })
+        df = df.sort_values("Material")
+        
         fig = px.line(df, x="Date", y="Average Score", color="Material", hover_name="Area")
         return fig

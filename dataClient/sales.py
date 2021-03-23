@@ -17,6 +17,7 @@ class salesData:
         costs = []
         areas = []
         margins = []
+        customers = []
         
         p = service.theservice.entity_sets.Sales.get_entities()
         for p_ in p.execute():
@@ -30,6 +31,14 @@ class salesData:
             cost = p_.COST
             cost = float(cost) / quantity
             area = p_.AREA
+            customer = p_.DISTRIBUTION_CHANNEL
+            
+            if customer == "12":
+                customer = "Grocery Chains"
+            elif customer == "10":
+                customer = "Hypermarkets"
+            elif customer == "14":
+                customer = "Independent Grocers"
             
             materials.append(material)
             dates.append(date)
@@ -38,8 +47,32 @@ class salesData:
             costs.append(cost)
             margins.append(price-cost)
             areas.append(area)
+            customers.append(customer)
             
-        return [materials, dates, quantities, prices, costs, margins, areas]
+        return [materials, dates, quantities, prices, costs, margins, areas, customers]
+    
+    def fetchOwnPrices():
+        dates = []
+        prices = []
+        customers = []
+        materials = []
+        
+        p = service.theservice.entity_sets.Pricing_Conditions.get_entities()
+        for p_ in p.execute():
+            date = p_.SIM_DATE
+            date = h.formatDate(date)
+            material = p_.MATERIAL_DESCRIPTION
+            customer = p_.DC_NAME
+            price = p_.PRICE
+            price = float(price)
+            
+            dates.append(date)
+            materials.append(material)
+            customers.append(customer)
+            prices.append(price)
+
+        return [dates, materials, customers, prices]
+            
 
 # Visualization
 import plotly.express as px
@@ -51,10 +84,26 @@ class salesVisualization:
             "Date": salesData.fetch()[1],
             "Material": salesData.fetch()[0],
             "Price": salesData.fetch()[3],
-            "Area": salesData.fetch()[6]
+            "Area": salesData.fetch()[6],
+            "Customer": salesData.fetch()[7]
         })
+        df = df.sort_values("Material")
 
-        fig = px.bar(df, x="Date", y="Quantity", color="Material", hover_data=["Price", "Area"])
+        fig = px.bar(df, x="Date", y="Quantity", color="Material", hover_data=["Price", "Area", "Customer"])
+        return fig
+    
+    def getAmountSoldPerDistributionChannelFigure():
+        df = pd.DataFrame({
+            "Quantity": salesData.fetch()[2],
+            "Date": salesData.fetch()[1],
+            "Material": salesData.fetch()[0],
+            "Price": salesData.fetch()[3],
+            "Area": salesData.fetch()[6],
+            "Customer": salesData.fetch()[7]
+        })
+        df = df.sort_values("Material")
+
+        fig = px.bar(df, x="Date", y="Quantity", color="Customer", hover_data=["Price", "Area", "Material"])
         return fig
     
     def getMarginFigure():
@@ -65,6 +114,7 @@ class salesVisualization:
             "Cost": salesData.fetch()[4],
             "Margin": salesData.fetch()[5]
         })
+        df = df.sort_values("Material")
 
         fig = px.scatter(df, x="Date", y="Margin", color="Material", hover_data=["Price", "Cost"])
         return fig
@@ -76,6 +126,7 @@ class salesVisualization:
             "Quantity": salesData.fetch()[2],
             "Price": salesData.fetch()[3]
         })
+        df = df.sort_values("Material")
 
         fig = px.bar(df, x="Area", y="Quantity", color="Material", hover_data=["Price"], barmode="group")
         return fig
@@ -88,5 +139,19 @@ class salesVisualization:
             "Price": salesData.fetch()[3]
         })
         df = df.sort_values(["Quantity"]).reset_index(drop=True)
+        df = df.sort_values("Material")
+        
         fig = px.bar(df, x="Material", y="Quantity", color="Area", hover_data=["Price"])
+        return fig
+    
+    def getOwnPricesOverTime():
+        df = pd.DataFrame({
+            "Date" : salesData.fetchOwnPrices()[0],
+            "Material" : salesData.fetchOwnPrices()[1],
+            "Customer" : salesData.fetchOwnPrices()[2],
+            "Price" : salesData.fetchOwnPrices()[3]
+        })
+        df = df.sort_values("Material")
+        
+        fig = px.scatter(df, x="Date", y="Price", hover_data=["Customer"], color="Material", color_discrete_sequence=h.palette)
         return fig

@@ -39,6 +39,7 @@ class materialVisualization:
             "Date": materialData.fetch(typeOfMaterial, unitType, size)[1],
             "Material": materialData.fetch(typeOfMaterial, unitType, size)[0]
         })
-
+        df = df.sort_values("Material")
+        
         fig = px.bar(df, x="Date", y="Quantity", color="Material")
         return fig
