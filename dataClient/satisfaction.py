@@ -44,7 +44,7 @@ class satisfactionData:
             dates.append(date)
             materials.append(description)
             areas.append(area)
-        return [dates, averageScore, materials, areas]
+        return [dates, averageScores, materials, areas]
 
 # Visualization
 import plotly.express as px
@@ -55,10 +55,35 @@ class satisfactionVisualization:
         df = pd.DataFrame({
             "Date": data[0],
             "Average Score": data[1],
-            "Material" : data[2],
-            "Area" : data[3]
+            "Material" : data[2]
         })
+        df = df.groupby(['Date', 'Material']).mean().reset_index()
+
+        fig = px.line(df, x="Date", y="Average Score", color="Material")
+        return fig
+
+    def getSatisfactionPerAreaFigure():
+        data = satisfactionData.fetch()
+        df = pd.DataFrame({
+            "Average Score": data[1],
+            "Material" : data[2],
+            "Area": data[3]
+        })
+        df = df.groupby(['Area', 'Material']).mean().reset_index()
         df = df.sort_values("Material")
         
-        fig = px.line(df, x="Date", y="Average Score", color="Material", hover_name="Area")
+        fig = px.bar(df, x="Area", y="Average Score", color="Material", barmode="group")
+        return fig
+    
+    def getSatisfactionPerProduct():
+        data = satisfactionData.fetch()
+        df = pd.DataFrame({
+            "Average Score": data[1],
+            "Material" : data[2]
+        })
+        df = df.groupby(['Material']).mean().reset_index()
+        df = df.sort_values("Material")
+        
+        fig = px.bar(df, x="Material", y="Average Score")
+        fig.update_yaxes(dtick=0.5) 
         return fig
