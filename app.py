@@ -12,42 +12,45 @@ server = app.server
 
 app.config.suppress_callback_exceptions = True
 
-app.layout = html.Div(className='page-container', children=[
-    html.H1('ERP Planspiel'),
-    html.Div(children='''
-        A dashboard for monitoring the data.
-    '''),
-    html.Div(
-                className='navigation',
-                children=[
-                    dbc.Nav([
-                        dbc.NavItem(dbc.NavLink("Company KPIs", href="/company")),
-                        dbc.NavItem(dbc.NavLink("Sales", href="/sales")),
-                        dbc.NavItem(dbc.NavLink("Market", href="/market")),
-                        dbc.NavItem(dbc.NavLink("Marketing", href="/marketing")),
-                        dbc.NavItem(dbc.NavLink("Inventory", href="/inventory")),
-                        dbc.NavItem(dbc.NavLink("Material", href="/material")),
-                        dbc.NavItem(dbc.NavLink("Suppliers", href="/suppliers")),
-                        dbc.NavItem(dbc.NavLink("Satisfaction", href="/satisfaction"))
-                    ],
-                        pills=True,
-                    )
-                ]
-    ),
-    html.Div(id='page-content'),
-    dcc.Location(id='url', refresh=False),
-    html.Div(className='Reminder', children=[
-        html.P("Reminder:"),
-        html.P("Nut - F01: 500g // F11: 1kg // R01 Nuts"),
-        html.P("Blueberry - F02: 500g // F12: 1kg // R02 Blueberries"),
-        html.P("Strawberry - F03: 500g // F13: 1kg // R03 Strawberries"),
-        html.P("Raisin - F04: 500g // F14: 1kg // R04: Raisins"),
-        html.P("Original -  F05: 500g // F15: 1kg // R05: Wheat"),
-        html.P("Mixed Fruit - F06: 500g // F16: 1kg // R06: Oats"),
-        html.P("P01: Large Box, P02: Large Bag (1kg)"),
-        html.P("P03: Small Box, P02: Small Bag (500g)")
+def serve_layout():
+    app_layout = html.Div(className='page-container', children=[
+        html.H1('ERP Planspiel'),
+        html.Div(children='''
+            A dashboard for monitoring the data.
+        '''),
+        html.Div(
+                    className='navigation',
+                    children=[
+                        dbc.Nav([
+                            dbc.NavItem(dbc.NavLink("Company KPIs", href="/company")),
+                            dbc.NavItem(dbc.NavLink("Sales", href="/sales")),
+                            dbc.NavItem(dbc.NavLink("Market", href="/market")),
+                            dbc.NavItem(dbc.NavLink("Marketing", href="/marketing")),
+                            dbc.NavItem(dbc.NavLink("Inventory", href="/inventory")),
+                            dbc.NavItem(dbc.NavLink("Material", href="/material")),
+                            dbc.NavItem(dbc.NavLink("Suppliers", href="/suppliers")),
+                            dbc.NavItem(dbc.NavLink("Satisfaction", href="/satisfaction"))
+                        ],
+                            pills=True,
+                        )
+                    ]
+        ),
+        html.Div(id='page-content'),
+        dcc.Location(id='url', refresh=False),
+        html.Div(className='Reminder', children=[
+            html.P("Reminder:"),
+            html.P("Nut - F01: 500g // F11: 1kg // R01 Nuts"),
+            html.P("Blueberry - F02: 500g // F12: 1kg // R02 Blueberries"),
+            html.P("Strawberry - F03: 500g // F13: 1kg // R03 Strawberries"),
+            html.P("Raisin - F04: 500g // F14: 1kg // R04: Raisins"),
+            html.P("Original -  F05: 500g // F15: 1kg // R05: Wheat"),
+            html.P("Mixed Fruit - F06: 500g // F16: 1kg // R06: Oats"),
+            html.P("P01: Large Box, P02: Large Bag (1kg)"),
+            html.P("P03: Small Box, P02: Small Bag (500g)")
+        ])
     ])
-])
+    
+    return app_layout
 
 # Page 1 callback
 @app.callback(dash.dependencies.Output('inventory-content', 'children'),
@@ -104,6 +107,8 @@ def display_page(pathname):
         return sales.sales_layout
     else:
         return '404'
+
+app.layout = serve_layout
 
 if __name__ == '__main__':
     app.run_server(debug=True)
