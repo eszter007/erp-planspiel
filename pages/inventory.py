@@ -3,7 +3,6 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 from dataClient.inventory import inventoryVisualization as invVis
-from dataClient.marketing import marketingVisualization as markVis
 
 inventory_layout = html.Div([
     html.H2(children='Inventory'),
@@ -15,27 +14,12 @@ inventory_layout = html.Div([
         id='inventory-500',
         figure=invVis.getFigure("500")
     ),
-    
-    html.H4(children='Marketing of 500g Muesli'),
-    # Marketing 500 g
-    dcc.Graph(
-        id='marketing-500',
-        figure=markVis.getFigureByTime("500")
-    ),
-    
     html.H3(children='1kg Muesli'),
     html.H4(children='Inventory of 1kg Muesli'),
     # 1 kg Inventory
     dcc.Graph(
         id='inventory-1',
         figure=invVis.getFigure("1")
-    ),
-    
-    # Marketing 1kg
-    html.H4(children='Marketing of 1kg Muesli'),
-    dcc.Graph(
-        id='marketing-1',
-        figure=markVis.getFigureByTime("1")
     ),
     dcc.Interval(
         id='interval-component',

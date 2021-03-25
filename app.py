@@ -3,7 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
-from pages import index, inventory, marketing, company, material, market, suppliers, satisfaction, sales
+from pages import index, inventory, marketing, company, material, market, suppliers, satisfaction, sales, production
 
 print(dcc.__version__) # 0.6.0 or above is required
 
@@ -28,6 +28,7 @@ def serve_layout():
                             dbc.NavItem(dbc.NavLink("Marketing", href="/marketing")),
                             dbc.NavItem(dbc.NavLink("Inventory", href="/inventory")),
                             dbc.NavItem(dbc.NavLink("Material", href="/material")),
+                            dbc.NavItem(dbc.NavLink("Production", href="/production")),
                             dbc.NavItem(dbc.NavLink("Suppliers", href="/suppliers")),
                             dbc.NavItem(dbc.NavLink("Satisfaction", href="/satisfaction"))
                         ],
@@ -84,6 +85,10 @@ def serve_layout():
 @app.callback(dash.dependencies.Output('sales-content', 'children'),
               [dash.dependencies.Input('sales-content', 'value')])
 
+# Page production callback
+@app.callback(dash.dependencies.Output('production-content', 'children'),
+              [dash.dependencies.Input('production-content', 'value')])
+
 # Index Page callback
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
@@ -105,6 +110,8 @@ def display_page(pathname):
         return satisfaction.satisfaction_layout
     elif pathname == '/sales':
         return sales.sales_layout
+    elif pathname == '/production':
+        return production.production_layout
     else:
         return '404'
 
