@@ -73,6 +73,7 @@ import plotly.express as px
 
 class salesVisualization:
     data = salesData.fetch()
+    ownPrices = salesData.fetchOwnPrices()
     def getAmountSoldFigure():
         data = salesVisualization.data
         df = pd.DataFrame({
@@ -145,7 +146,7 @@ class salesVisualization:
         return fig
     
     def getOwnPricesOverTime():
-        data = salesVisualization.data
+        data = salesVisualization.ownPrices
         df = pd.DataFrame({
             "Date" : data[0],
             "Material" : data[1],
