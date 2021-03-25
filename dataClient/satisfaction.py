@@ -50,8 +50,9 @@ class satisfactionData:
 import plotly.express as px
 
 class satisfactionVisualization:
+    data = satisfactionData.fetch()
     def getFigure():
-        data = satisfactionData.fetch()
+        data = satisfactionVisualization.data
         df = pd.DataFrame({
             "Date": data[0],
             "Average Score": data[1],

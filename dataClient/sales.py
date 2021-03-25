@@ -72,14 +72,16 @@ class salesData:
 import plotly.express as px
 
 class salesVisualization:
+    data = salesData.fetch()
     def getAmountSoldFigure():
+        data = salesVisualization.data
         df = pd.DataFrame({
-            "Quantity": salesData.fetch()[2],
-            "Date": salesData.fetch()[1],
-            "Material": salesData.fetch()[0],
-            "Price": salesData.fetch()[3],
-            "Area": salesData.fetch()[6],
-            "Customer": salesData.fetch()[7]
+            "Quantity": data[2],
+            "Date": data[1],
+            "Material": data[0],
+            "Price": data[3],
+            "Area": data[6],
+            "Customer": data[7]
         })
         df = df.sort_values("Material")
 
@@ -87,13 +89,14 @@ class salesVisualization:
         return fig
     
     def getAmountSoldPerDistributionChannelFigure():
+        data = salesVisualization.data
         df = pd.DataFrame({
-            "Quantity": salesData.fetch()[2],
-            "Date": salesData.fetch()[1],
-            "Material": salesData.fetch()[0],
-            "Price": salesData.fetch()[3],
-            "Area": salesData.fetch()[6],
-            "Customer": salesData.fetch()[7]
+            "Quantity": data[2],
+            "Date": data[1],
+            "Material": data[0],
+            "Price": data[3],
+            "Area": data[6],
+            "Customer": data[7]
         })
         df = df.sort_values("Material")
 
@@ -101,12 +104,13 @@ class salesVisualization:
         return fig
     
     def getMarginFigure():
+        data = salesVisualization.data
         df = pd.DataFrame({
-            "Date": salesData.fetch()[1],
-            "Material": salesData.fetch()[0],
-            "Price": salesData.fetch()[3],
-            "Cost": salesData.fetch()[4],
-            "Margin": salesData.fetch()[5]
+            "Date": data[1],
+            "Material": data[0],
+            "Price": data[3],
+            "Cost": data[4],
+            "Margin": data[5]
         })
         df = df.sort_values("Material")
 
@@ -114,11 +118,12 @@ class salesVisualization:
         return fig
 
     def getSalePerAreaFigure():
+        data = salesVisualization.data
         df = pd.DataFrame({
-            "Material": salesData.fetch()[0],
-            "Area": salesData.fetch()[6],
-            "Quantity": salesData.fetch()[2],
-            "Price": salesData.fetch()[3]
+            "Material": data[0],
+            "Area": data[6],
+            "Quantity": data[2],
+            "Price": data[3]
         })
         df = df.sort_values("Material")
 
@@ -126,11 +131,12 @@ class salesVisualization:
         return fig
     
     def getMostPopularProductFigure():
+        data = salesVisualization.data
         df = pd.DataFrame({
-            "Material": salesData.fetch()[0],
-            "Area": salesData.fetch()[6],
-            "Quantity": salesData.fetch()[2],
-            "Price": salesData.fetch()[3]
+            "Material": data[0],
+            "Area": data[6],
+            "Quantity": data[2],
+            "Price": data[3]
         })
         df = df.sort_values(["Quantity"]).reset_index(drop=True)
         df = df.sort_values("Material")
@@ -139,11 +145,12 @@ class salesVisualization:
         return fig
     
     def getOwnPricesOverTime():
+        data = salesVisualization.data
         df = pd.DataFrame({
-            "Date" : salesData.fetchOwnPrices()[0],
-            "Material" : salesData.fetchOwnPrices()[1],
-            "Customer" : salesData.fetchOwnPrices()[2],
-            "Price" : salesData.fetchOwnPrices()[3]
+            "Date" : data[0],
+            "Material" : data[1],
+            "Customer" : data[2],
+            "Price" : data[3]
         })
         df = df.sort_values("Material")
         

@@ -43,8 +43,9 @@ class marketData:
 import plotly.express as px
 
 class marketVisualization:
+    data = marketData.fetch()
     def getQuantityPerAreaAndMaterial():
-        data = marketData.fetch()
+        data = marketVisualization.data
         df = pd.DataFrame({
             "Quantity": data[2],
             "Material": data[0],
@@ -62,7 +63,7 @@ class marketVisualization:
         return fig
     
     def getMostPopularProduct():
-        data = marketData.fetch()
+        data = marketVisualization.data
         df = pd.DataFrame({
             "Quantity": data[2],
             "Material": data[0],
@@ -78,7 +79,7 @@ class marketVisualization:
         return fig
     
     def getPriceAndAmount():
-        data = marketData.fetch()
+        data = marketVisualization.data
         df = pd.DataFrame({
             "Quantity": data[2],
             "Material": data[0],
@@ -98,7 +99,7 @@ class marketVisualization:
         return fig
     
     def getAveragePrice():
-        data = marketData.fetch()
+        data = marketVisualization.data
         df = pd.DataFrame({
             "Material": data[0],
             "Quantity": data[2],
@@ -146,7 +147,7 @@ class marketVisualization:
     
     # Over time data
     def getPricesOverTime():
-        data = marketData.fetch()
+        data = marketVisualization.data
         df = pd.DataFrame({
             "Material": data[0],
             "Quantity": data[2],
@@ -167,7 +168,7 @@ class marketVisualization:
         return fig
     
     def getPopularityOverTime():
-        data = marketData.fetch()
+        data = marketVisualization.data
         df = pd.DataFrame({
             "Material": data[0],
             "Quantity": data[2],
@@ -185,7 +186,7 @@ class marketVisualization:
         return fig
     
     def getPurchaseVolumePeriodsFigure():
-        data = marketData.fetch()
+        data = marketVisualization.data
         df = pd.DataFrame({
             "Material": data[0],
             "Quantity": data[2],

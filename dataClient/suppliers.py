@@ -33,12 +33,14 @@ class supplierData:
 import plotly.express as px
 
 class supplierVisualization:
+    data = supplierData.fetch()
     def getFigure():
+        data = supplierVisualization.data
         df = pd.DataFrame({
-            "Material":supplierData.fetch()[0],
-            "Date":supplierData.fetch()[1],
-            "Price":supplierData.fetch()[2],
-            "Vendor":supplierData.fetch()[3],
+            "Material":data[0],
+            "Date":data[1],
+            "Price":data[2],
+            "Vendor":data[3],
         })
         
         fig = px.line(df, x="Date", y="Price", color="Material", hover_data=["Material", "Price", "Vendor"])

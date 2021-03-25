@@ -55,26 +55,29 @@ class companyData:
 import plotly.express as px
 
 class companyVisualization:
+    fetchedData = companyData.fetchCompanyValuation()
     def getCompanyValuationFigure():
+        fetchedData = companyVisualization.fetchedData
         df = pd.DataFrame({
-            "Company Valuation": companyData.fetchCompanyValuation()[8],
-            "Date": companyData.fetchCompanyValuation()[0],
-            "Credit Rating": companyData.fetchCompanyValuation()[7]
+            "Company Valuation": fetchedData[8],
+            "Date": fetchedData[0],
+            "Credit Rating": fetchedData[7]
         })
 
         fig = px.line(df, x="Date", y="Company Valuation", hover_data=["Credit Rating"])
         return fig
     
     def getDebtLoadingProfitsFigure():
+        fetchedData = companyVisualization.fetchedData
         df = pd.DataFrame({
-            "Debt Loading": companyData.fetchCompanyValuation()[6],
-            "Profit": companyData.fetchCompanyValuation()[5],
-            "Cash": companyData.fetchCompanyValuation()[1],
-            "Account Receivable": companyData.fetchCompanyValuation()[2],
-            "Loans": companyData.fetchCompanyValuation()[3],
-            "Account Payables": companyData.fetchCompanyValuation()[4],
-            "Credit Rating": companyData.fetchCompanyValuation()[7],
-            "Date": companyData.fetchCompanyValuation()[0]
+            "Debt Loading": fetchedData[6],
+            "Profit": fetchedData[5],
+            "Cash": fetchedData[1],
+            "Account Receivable": fetchedData[2],
+            "Loans": fetchedData[3],
+            "Account Payables": fetchedData[4],
+            "Credit Rating": fetchedData[7],
+            "Date": fetchedData[0]
         })
 
         fig = px.line(df, x="Date", 
@@ -86,13 +89,14 @@ class companyVisualization:
         return fig
     
     def getCashProfitsFigure():
+        fetchedData = companyVisualization.fetchedData
         df = pd.DataFrame({
-            "Profit": companyData.fetchCompanyValuation()[5],
-            "Cash": companyData.fetchCompanyValuation()[1],
-            "Account Receivable": companyData.fetchCompanyValuation()[2],
-            "Account Payables": companyData.fetchCompanyValuation()[4],
-            "Credit Rating": companyData.fetchCompanyValuation()[7],
-            "Date": companyData.fetchCompanyValuation()[0]
+            "Profit": fetchedData[5],
+            "Cash": fetchedData[1],
+            "Account Receivable": fetchedData[2],
+            "Account Payables": fetchedData[4],
+            "Credit Rating": fetchedData[7],
+            "Date": fetchedData[0]
         })
 
         fig = px.line(df, x="Date", 
