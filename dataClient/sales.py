@@ -129,6 +129,7 @@ class salesVisualization:
         df = df.sort_values("Material")
 
         fig = px.bar(df, x="Area", y="Quantity", color="Material", hover_data=["Price"], barmode="group")
+        fig.update_traces(marker_line_width=0)
         return fig
     
     def getMostPopularProductFigure():
@@ -143,6 +144,7 @@ class salesVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Material", y="Quantity", color="Area", hover_data=["Price"])
+        fig.update_traces(marker_line_width=0)
         return fig
     
     def getOwnPricesOverTime():

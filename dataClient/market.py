@@ -60,6 +60,7 @@ class marketVisualization:
                      hover_data=["Area", "Quantity", "Price"], 
                      barmode='group', 
                      color_discrete_sequence=h.palette)
+        fig.update_traces(marker_line_width=0)
         return fig
     
     def getMostPopularProduct():
@@ -76,6 +77,7 @@ class marketVisualization:
                      y="Quantity", 
                      color="Area", 
                      hover_data=["Price"])
+        fig.update_traces(marker_line_width=0)
         return fig
     
     def getPriceAndAmount():
@@ -183,6 +185,7 @@ class marketVisualization:
                     color="Material", 
                     hover_data=["Price"], 
                     color_discrete_sequence=h.palette)
+        fig.update_traces(marker_line_width=0)
         return fig
     
     def getPurchaseVolumePeriodsFigure():
@@ -202,4 +205,5 @@ class marketVisualization:
                     color="Customer", 
                     hover_data=["Price", "Quantity"],
                     color_discrete_sequence=h.palette)
+        fig.update_traces(marker_line_width=0)
         return fig
