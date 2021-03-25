@@ -67,7 +67,7 @@ class productionData:
             materials.append(material)
             dates.append(date)
             quantities.append(quantitity)
-        return [dates, materials, quantitity]
+        return [dates, materials, quantities]
 
 # Visualization
 import plotly.express as px
@@ -95,17 +95,6 @@ class productionVisualization:
     #
     # Production Order
     #
-    def getProductionOrderFigure():
-        data = productionVisualization.prodOrderData
-        df = pd.DataFrame({
-            "Date":data[0],
-            "Material":data[1],
-            "Production Order":data[2]
-        })
-        df = df.sort_values("Material")
-        
-        fig = px.bar(df, x="Date", y="Production Order", color="Material")
-        return fig
     
     def getTargetQuantityFigure():
         data = productionVisualization.prodOrderData
@@ -142,6 +131,7 @@ class productionVisualization:
             "Material":data[1],
             "Purchase Order":data[2]
         })
+
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Purchase Order", color="Material")

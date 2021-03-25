@@ -17,11 +17,6 @@ production_layout = html.Div([
         figure=pVis.getProductionFigure()
     ),
     html.H3(children='Production Orders'),
-    html.H4(children='Production Orders'),
-    dcc.Graph(
-        id='production-orders',
-        figure=pVis.getProductionOrderFigure()
-    ),
     html.H4(children='Target Quantity'),
     dcc.Graph(
         id='production-orders-target-quantity',
