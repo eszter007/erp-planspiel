@@ -6,6 +6,11 @@ from dataClient.production import productionVisualization as pVis
 
 production_layout = html.Div([
     html.H2(children='Production'),
+    html.H3(children='Productivity'),
+    dcc.Graph(
+        id='productivity',
+        figure=pVis.getProductivityFigure()
+    ),
     html.H3(children='Production Yield'),
     dcc.Graph(
         id='production-yield',

@@ -146,3 +146,21 @@ class productionVisualization:
         
         fig = px.bar(df, x="Date", y="Purchase Order", color="Material")
         return fig
+    
+    def getProductivityFigure():
+        data = {
+            "January": 81.786,
+            "February": 66.786,
+            "March": 83.690,
+            "April": 50.834,
+            "May": 65.833,
+            "June": 81.736,
+            "July": 91.666,
+            "August": 86.429,
+            "September": 89.999
+        }
+        df = pd.DataFrame.from_dict(list(data.items()))
+        df.columns = ["Month", "Productivity in %"]
+
+        fig = px.line(df, x="Month", y="Productivity in %")
+        return fig

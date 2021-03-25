@@ -8,7 +8,6 @@ from dataClient.service import service
 from dataClient.helper import helper as h
 
 class companyData:
-    
     def fetchCompanyValuation():
         dates = []
         
@@ -50,12 +49,56 @@ class companyData:
             valuation.append(float(val))
             
         return [dates, cashHistory, accReceivables, loanHistory, accPayables, profits, debtLoadings, creditRatings, valuation]
-
+    
+    def fetchCosts():
+        dates = []
+        fsLevels2 = []
+        amounts = []
+        
+        p = service.theservice.entity_sets.Financial_Postings.get_entities()
+        for p_ in p.execute():
+            date = p_.SIM_DATE
+            date = h.formatDate(date)
+            fsLevel2 = p_.FS_LEVEL_2
+            amount = p_.AMOUNT
+            amount = float(amount)
+            
+            dates.append(date)
+            fsLevels2.append(fsLevel2)
+            amounts.append(amount)
+            
+        return [dates, fsLevels2, amounts]
+    
+    def fetchProductionCosts():
+        dates = []
+        categories = []
+        amounts = []
+        
+        p = service.theservice.entity_sets.Financial_Postings.get_entities()
+        for p_ in p.execute():
+            glName = p_.GL_ACCOUNT_NAME
+            
+            if (glName == "Warehousing Costs") or (glName == "Factory Overhead Expenses"):
+                date = p_.SIM_DATE
+                date = h.formatDate(date)
+                amount = p_.AMOUNT
+                amount = float(amount)
+                
+                dates.append(date)
+                categories.append(glName)
+                amounts.append(amount)
+            else: continue
+            
+        return [dates, categories, amounts]
+    
 # Visualization
 import plotly.express as px
 
 class companyVisualization:
     fetchedData = companyData.fetchCompanyValuation()
+    fetchedCosts = companyData.fetchCosts()
+    productionCosts = companyData.fetchProductionCosts()
+    
     def getCompanyValuationFigure():
         fetchedData = companyVisualization.fetchedData
         df = pd.DataFrame({
@@ -104,4 +147,26 @@ class companyVisualization:
                       hover_data=["Credit Rating"],
                       labels={"value": "Amount",
                         "variable": "KPI"})
+        return fig
+    
+    def getCostsFigure():
+        data = companyVisualization.fetchedCosts
+        df = pd.DataFrame({
+            "Date": data[0],
+            "FS Level 2": data[1],
+            "Amount": data[2]
+        })
+        
+        fig = px.bar(df, x="Date", y="Amount", color="FS Level 2")
+        return fig
+    
+    def getProductionCostsFigure():
+        data = companyVisualization.productionCosts
+        df = pd.DataFrame({
+            "Date": data[0],
+            "Cost Type": data[1],
+            "Amount": data[2]
+        })
+        
+        fig = px.bar(df, x="Date", y="Amount", color="Cost Type")
         return fig
