@@ -131,7 +131,6 @@ class productionVisualization:
             "Material":data[1],
             "Purchase Order":data[2]
         })
-
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Purchase Order", color="Material")
