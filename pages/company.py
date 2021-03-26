@@ -5,31 +5,31 @@ from dash.dependencies import Input, Output
 from dataClient.company import companyVisualization as vis
 
 company_layout = html.Div([
-    html.H2(children='Company'),
-    html.H3(children='Company Valuation'),
+    html.H2(children="Company"),
+    html.H3(children="Company Valuation"),
     dcc.Graph(
-        id='company-valuation',
+        id="company-valuation",
         figure=vis.getCompanyValuationFigure()
     ),
-    html.H3(children='Debt Loading & Profits'),
+    html.H3(children="Debt Loading & Profits"),
     dcc.Graph(
-        id='company-debt-loading-profits',
+        id="company-debt-loading-profits",
         figure=vis.getDebtLoadingProfitsFigure()
     ),
-    html.H3(children='Cash, Account Receivables, Payables'),
+    html.H3(children="Cash, Account Receivables, Payables"),
     dcc.Graph(
-        id='company-debt-loading-profits',
+        id="company-debt-loading-profits",
         figure=vis.getCashProfitsFigure()
     ),
-    html.H3(children='Warehousing & Production Costs'),
+    html.H3(children="Warehousing & Production Costs"),
     dcc.Graph(
-        id='company-costs-production',
+        id="company-costs-production",
         figure=vis.getProductionCostsFigure()
     ),
     dcc.Interval(
-        id='interval-component',
+        id="interval-component",
         interval=1*10000, # in milliseconds
         n_intervals=0
     ),
-    html.Div(id='company-content')
+    html.Div(id="company-content")
 ])

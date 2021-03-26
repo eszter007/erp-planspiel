@@ -58,7 +58,7 @@ class marketVisualization:
                      y="Quantity", 
                      color="Material", 
                      hover_data=["Area", "Quantity", "Price"], 
-                     barmode='group', 
+                     barmode="group", 
                      color_discrete_sequence=h.palette)
         fig.update_traces(marker_line_width=0)
         return fig

@@ -7,19 +7,19 @@ from pages import index, inventory, marketing, company, market, suppliers, satis
 
 print(dcc.__version__) # 0.6.0 or above is required
 
-app = dash.Dash( __name__, external_stylesheets=[dbc.themes.BOOTSTRAP, 'https://codepen.io/chriddyp/pen/bWLwgP.css'])
+app = dash.Dash( __name__, external_stylesheets=[dbc.themes.BOOTSTRAP, "https://codepen.io/chriddyp/pen/bWLwgP.css"])
 server = app.server
 
 app.config.suppress_callback_exceptions = True
 
 def serve_layout():
-    app_layout = html.Div(className='page-container', children=[
-        html.H1('ERP Planspiel'),
-        html.Div(children='''
+    app_layout = html.Div(className="page-container", children=[
+        html.H1("ERP Planspiel"),
+        html.Div(children="""
             A dashboard for monitoring the data.
-        '''),
+        """),
         html.Div(
-                    className='navigation',
+                    className="navigation",
                     children=[
                         dbc.Nav([
                             dbc.NavItem(dbc.NavLink("Company KPIs", href="/company")),
@@ -35,9 +35,9 @@ def serve_layout():
                         )
                     ]
         ),
-        html.Div(id='page-content'),
-        dcc.Location(id='url', refresh=False),
-        html.Div(className='Reminder', children=[
+        html.Div(id="page-content"),
+        dcc.Location(id="url", refresh=False),
+        html.Div(className="Reminder", children=[
             html.P("Reminder:"),
             html.P("Nut - F01: 500g // F11: 1kg // R01 Nuts"),
             html.P("Blueberry - F02: 500g // F12: 1kg // R02 Blueberries"),
@@ -53,62 +53,62 @@ def serve_layout():
     return app_layout
 
 # Page 1 callback
-@app.callback(dash.dependencies.Output('inventory-content', 'children'),
-              [dash.dependencies.Input('inventory-content', 'value')])
+@app.callback(dash.dependencies.Output("inventory-content", "children"),
+              [dash.dependencies.Input("inventory-content", "value")])
 
 # Page 2
-@app.callback(dash.dependencies.Output('marketing-content', 'children'),
-              [dash.dependencies.Input('marketing-content', 'value')])
+@app.callback(dash.dependencies.Output("marketing-content", "children"),
+              [dash.dependencies.Input("marketing-content", "value")])
 
 # Page Company callback
-@app.callback(dash.dependencies.Output('company-content', 'children'),
-              [dash.dependencies.Input('company-content', 'value')])
+@app.callback(dash.dependencies.Output("company-content", "children"),
+              [dash.dependencies.Input("company-content", "value")])
 
 # Page Market callback
-@app.callback(dash.dependencies.Output('market-content', 'children'),
-              [dash.dependencies.Input('market-content', 'value')])
+@app.callback(dash.dependencies.Output("market-content", "children"),
+              [dash.dependencies.Input("market-content", "value")])
 
 # Page suppliers callback
-@app.callback(dash.dependencies.Output('suppliers-content', 'children'),
-              [dash.dependencies.Input('suppliers-content', 'value')])
+@app.callback(dash.dependencies.Output("suppliers-content", "children"),
+              [dash.dependencies.Input("suppliers-content", "value")])
 
 # Page satisfaction callback
-@app.callback(dash.dependencies.Output('satisfaction-content', 'children'),
-              [dash.dependencies.Input('satisfaction-content', 'value')])
+@app.callback(dash.dependencies.Output("satisfaction-content", "children"),
+              [dash.dependencies.Input("satisfaction-content", "value")])
 
 # Page sales callback
-@app.callback(dash.dependencies.Output('sales-content', 'children'),
-              [dash.dependencies.Input('sales-content', 'value')])
+@app.callback(dash.dependencies.Output("sales-content", "children"),
+              [dash.dependencies.Input("sales-content", "value")])
 
 # Page production callback
-@app.callback(dash.dependencies.Output('production-content', 'children'),
-              [dash.dependencies.Input('production-content', 'value')])
+@app.callback(dash.dependencies.Output("production-content", "children"),
+              [dash.dependencies.Input("production-content", "value")])
 
 # Index Page callback
-@app.callback(Output('page-content', 'children'),
-              [Input('url', 'pathname')])
+@app.callback(Output("page-content", "children"),
+              [Input("url", "pathname")])
 
 def display_page(pathname):
-    if pathname == '/inventory':
+    if pathname == "/inventory":
         return inventory.inventory_layout
-    elif pathname == '/marketing':
+    elif pathname == "/marketing":
         return marketing.marketing_layout
-    elif pathname == '/company':
+    elif pathname == "/company":
         return company.company_layout
-    elif pathname == '/market':
+    elif pathname == "/market":
         return market.market_layout
-    elif pathname == '/suppliers':
+    elif pathname == "/suppliers":
         return suppliers.suppliers_layout
-    elif pathname == '/satisfaction':
+    elif pathname == "/satisfaction":
         return satisfaction.satisfaction_layout
-    elif pathname == '/sales':
+    elif pathname == "/sales":
         return sales.sales_layout
-    elif pathname == '/production':
+    elif pathname == "/production":
         return production.production_layout
     else:
-        return '404'
+        return "404"
 
 app.layout = serve_layout
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run_server(debug=True)

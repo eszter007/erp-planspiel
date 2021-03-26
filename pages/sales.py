@@ -5,41 +5,41 @@ from dash.dependencies import Input, Output
 from dataClient.sales import salesVisualization as salesVis
 
 sales_layout = html.Div([
-    html.H2(children='Sales'),
-    html.H3(children='Own Prices over Time'),
+    html.H2(children="Sales"),
+    html.H3(children="Own Prices over Time"),
     dcc.Graph(
-        id='ownPrices',
+        id="ownPrices",
         figure=salesVis.getOwnPricesOverTime()
     ),
-    html.H3(children='Amount of Products Sold per Product'),
+    html.H3(children="Amount of Products Sold per Product"),
     dcc.Graph(
-        id='sales-sold-time',
+        id="sales-sold-time",
         figure=salesVis.getAmountSoldFigure()
     ),
-    html.H3(children='Amount of Products Sold per Distribution Channel'),
+    html.H3(children="Amount of Products Sold per Distribution Channel"),
     dcc.Graph(
-        id='sales-sold-time-dc',
+        id="sales-sold-time-dc",
         figure=salesVis.getAmountSoldPerDistributionChannelFigure()
     ),
-    html.H3(children='Margin per Product'),
+    html.H3(children="Margin per Product"),
     dcc.Graph(
-        id='sales-margin',
+        id="sales-margin",
         figure=salesVis.getMarginFigure()
     ),
-    html.H3(children='Most Popular Product Sold'),
+    html.H3(children="Most Popular Product Sold"),
     dcc.Graph(
-        id='sales-most-popular',
+        id="sales-most-popular",
         figure=salesVis.getMostPopularProductFigure()
     ),
-    html.H3(children='Total Sales per Area'),
+    html.H3(children="Total Sales per Area"),
     dcc.Graph(
-        id='sales-per-area',
+        id="sales-per-area",
         figure=salesVis.getSalePerAreaFigure()
     ),
     dcc.Interval(
-        id='interval-component',
+        id="interval-component",
         interval=1*10000, # in milliseconds
         n_intervals=0
     ),
-    html.Div(id='sales-content')
+    html.Div(id="sales-content")
 ])

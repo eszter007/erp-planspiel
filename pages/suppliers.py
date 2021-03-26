@@ -5,16 +5,16 @@ from dash.dependencies import Input, Output
 from dataClient.suppliers import supplierVisualization as supVis
 
 suppliers_layout = html.Div([
-    html.H2(children='Suppliers'),
-    html.H3(children='Suppliers\' Prices over Time'),
+    html.H2(children="Suppliers"),
+    html.H3(children="Suppliers\" Prices over Time"),
     dcc.Graph(
-        id='suppliersPerTime',
+        id="suppliersPerTime",
         figure=supVis.getFigure()
     ),
     dcc.Interval(
-        id='interval-component',
+        id="interval-component",
         interval=1*10000, # in milliseconds
         n_intervals=0
     ),
-    html.Div(id='suppliers-content')
+    html.Div(id="suppliers-content")
 ])

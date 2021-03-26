@@ -5,21 +5,21 @@ from dash.dependencies import Input, Output
 from dataClient.marketing import marketingVisualization as markVis
 
 marketing_layout = html.Div([
-    html.H2(children='Marketing'),
-    html.H3(children='Spend per Area'),
+    html.H2(children="Marketing"),
+    html.H3(children="Spend per Area"),
     dcc.Graph(
-        id='marketing-area',
+        id="marketing-area",
         figure=markVis.getFigureByArea()
     ),
-    html.H3(children='Spend per Product'),
+    html.H3(children="Spend per Product"),
     dcc.Graph(
-        id='marketing-area',
+        id="marketing-area",
         figure=markVis.getFigureByTime("")
     ),
     dcc.Interval(
-        id='interval-component',
+        id="interval-component",
         interval=1*10000, # in milliseconds
         n_intervals=0
     ),
-    html.Div(id='marketing-content')
+    html.Div(id="marketing-content")
 ])

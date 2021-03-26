@@ -60,7 +60,7 @@ class satisfactionVisualization:
             "Average Score": data[1],
             "Material" : data[2]
         })
-        df = df.groupby(['Date', 'Material']).mean().reset_index()
+        df = df.groupby(["Date", "Material"]).mean().reset_index()
 
         fig = px.line(df, x="Date", y="Average Score", color="Material")
         return fig
@@ -72,7 +72,7 @@ class satisfactionVisualization:
             "Material" : data[2],
             "Area": data[3]
         })
-        df = df.groupby(['Area', 'Material']).mean().reset_index()
+        df = df.groupby(["Area", "Material"]).mean().reset_index()
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Area", y="Average Score", color="Material", barmode="group")
@@ -84,7 +84,7 @@ class satisfactionVisualization:
             "Average Score": data[1],
             "Material" : data[2]
         })
-        df = df.groupby(['Material']).mean().reset_index()
+        df = df.groupby(["Material"]).mean().reset_index()
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Material", y="Average Score")

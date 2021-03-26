@@ -5,37 +5,37 @@ from dash.dependencies import Input, Output
 from dataClient.production import productionVisualization as pVis
 
 production_layout = html.Div([
-    html.H2(children='Production'),
-    html.H3(children='Productivity'),
+    html.H2(children="Production"),
+    html.H3(children="Productivity"),
     dcc.Graph(
-        id='productivity',
+        id="productivity",
         figure=pVis.getProductivityFigure()
     ),
-    html.H3(children='Production Yield'),
+    html.H3(children="Production Yield"),
     dcc.Graph(
-        id='production-yield',
+        id="production-yield",
         figure=pVis.getProductionFigure()
     ),
-    html.H3(children='Production Orders'),
-    html.H4(children='Target Quantity'),
+    html.H3(children="Production Orders"),
+    html.H4(children="Target Quantity"),
     dcc.Graph(
-        id='production-orders-target-quantity',
+        id="production-orders-target-quantity",
         figure=pVis.getTargetQuantityFigure()
     ),
-    html.H4(children='Confirmed Quantity'),
+    html.H4(children="Confirmed Quantity"),
     dcc.Graph(
-        id='production-orders-confirmed-quantity',
+        id="production-orders-confirmed-quantity",
         figure=pVis.getConfirmedQuantityFigure()
     ),
-    html.H3(children='Purchase Order'),
+    html.H3(children="Purchase Order"),
     dcc.Graph(
-        id='purchase-order.figure',
+        id="purchase-order.figure",
         figure=pVis.getPurchaseOrderFigure()
     ),
     dcc.Interval(
-        id='interval-component',
+        id="interval-component",
         interval=1*10000, # in milliseconds
         n_intervals=0
     ),
-    html.Div(id='production-content')
+    html.Div(id="production-content")
 ])
