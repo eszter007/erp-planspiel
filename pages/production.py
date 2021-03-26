@@ -3,6 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 from dataClient.production import productionVisualization as pVis
+from dataClient.sales import salesVisualization as salesVis
 
 production_layout = html.Div([
     html.H2(children="Production"),
@@ -10,6 +11,11 @@ production_layout = html.Div([
     dcc.Graph(
         id="productivity",
         figure=pVis.getProductivityFigure()
+    ),
+    html.H3(children="Variable Unit Costs"),
+    dcc.Graph(
+        id="unit-costs",
+        figure=salesVis.getCostFigure()
     ),
     html.H3(children="Production Yield"),
     dcc.Graph(

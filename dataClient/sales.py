@@ -34,13 +34,15 @@ class salesData:
                 area = p_.AREA
                 customer = p_.DISTRIBUTION_CHANNEL
                 customer = h.getCustomer(customer)
+                margin = p_.CONTRIBUTION_MARGIN
+                margin = float(margin)
                 
                 materials.append(material)
                 dates.append(date)
                 quantities.append(quantity)
                 prices.append(price)
                 costs.append(cost)
-                margins.append(price-cost)
+                margins.append(margin/quantity)
                 areas.append(area)
                 customers.append(customer)
             else: continue
@@ -114,12 +116,24 @@ class salesVisualization:
             "Date": data[1],
             "Material": data[0],
             "Price": data[3],
-            "Cost": data[4],
+            "Variable Cost": data[4],
             "Margin": data[5]
         })
         df = df.sort_values("Material")
 
-        fig = px.scatter(df, x="Date", y="Margin", color="Material", hover_data=["Price", "Cost"])
+        fig = px.scatter(df, x="Date", y="Margin", color="Material", hover_data=["Price", "Variable Cost"])
+        return fig
+    
+    def getCostFigure():
+        data = salesVisualization.data
+        df = pd.DataFrame({
+            "Date": data[1],
+            "Material": data[0],
+            "Cost per Unit": data[4]
+        })
+        df = df.sort_values("Material")
+
+        fig = px.line(df, x="Date", y="Cost per Unit", color="Material")
         return fig
 
     def getSalePerAreaFigure():
