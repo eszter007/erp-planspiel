@@ -140,9 +140,6 @@ class salesVisualization:
             "Quantity": data[2],
             "Price": data[3]
         })
-        df = df.sort_values(["Quantity"]).reset_index(drop=True)
-        df = df.sort_values("Material")
-        
         fig = px.bar(df, x="Material", y="Quantity", color="Area", hover_data=["Price"])
         fig.update_traces(marker_line_width=0)
         return fig

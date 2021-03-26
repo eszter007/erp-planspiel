@@ -3,7 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
-from pages import index, inventory, marketing, company, material, market, suppliers, satisfaction, sales, production
+from pages import index, inventory, marketing, company, market, suppliers, satisfaction, sales, production
 
 print(dcc.__version__) # 0.6.0 or above is required
 
@@ -27,7 +27,6 @@ def serve_layout():
                             dbc.NavItem(dbc.NavLink("Market", href="/market")),
                             dbc.NavItem(dbc.NavLink("Marketing", href="/marketing")),
                             dbc.NavItem(dbc.NavLink("Inventory", href="/inventory")),
-                            dbc.NavItem(dbc.NavLink("Material", href="/material")),
                             dbc.NavItem(dbc.NavLink("Production", href="/production")),
                             dbc.NavItem(dbc.NavLink("Suppliers", href="/suppliers")),
                             dbc.NavItem(dbc.NavLink("Satisfaction", href="/satisfaction"))
@@ -65,10 +64,6 @@ def serve_layout():
 @app.callback(dash.dependencies.Output('company-content', 'children'),
               [dash.dependencies.Input('company-content', 'value')])
 
-# Page Material callback
-@app.callback(dash.dependencies.Output('material-content', 'children'),
-              [dash.dependencies.Input('material-content', 'value')])
-
 # Page Market callback
 @app.callback(dash.dependencies.Output('market-content', 'children'),
               [dash.dependencies.Input('market-content', 'value')])
@@ -100,8 +95,6 @@ def display_page(pathname):
         return marketing.marketing_layout
     elif pathname == '/company':
         return company.company_layout
-    elif pathname == '/material':
-        return material.material_layout
     elif pathname == '/market':
         return market.market_layout
     elif pathname == '/suppliers':
