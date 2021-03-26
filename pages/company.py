@@ -21,11 +21,6 @@ company_layout = html.Div([
         id='company-debt-loading-profits',
         figure=vis.getCashProfitsFigure()
     ),
-    html.H3(children='Costs'),
-    dcc.Graph(
-        id='company-costs',
-        figure=vis.getCostsFigure()
-    ),
     html.H3(children='Warehousing & Production Costs'),
     dcc.Graph(
         id='company-costs-production',
