@@ -110,7 +110,6 @@ class marketVisualization:
         
         muesliDict = dict()
 
-        #print(df.sort_values(by=["Price"]))
         for index, row in df.iterrows():
             if row["Quantity"] == 0:
                 continue
