@@ -44,4 +44,5 @@ class inventoryVisualization:
         df = df.sort_values("Material")
 
         fig = px.bar(df, x="Date", y="Amount", color="Material")
+        fig.write_html("./Demo_Files/Inventory/" + size + "inventory.html")
         return fig

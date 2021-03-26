@@ -91,6 +91,7 @@ class companyVisualization:
         })
 
         fig = px.line(df, x="Date", y="Company Valuation", hover_data=["Credit Rating"])
+        fig.write_html("./Demo_Files/Company/companyValuation.html")
         return fig
     
     def getDebtLoadingProfitsFigure():
@@ -111,7 +112,7 @@ class companyVisualization:
                       hover_data=["Credit Rating"],
                       labels={"value": "Amount",
                         "variable": "KPI"})
-        
+        fig.write_html("./Demo_Files/Company/DebtLoadingProfits.html")
         return fig
     
     def getCashProfitsFigure():
@@ -130,6 +131,7 @@ class companyVisualization:
                       hover_data=["Credit Rating"],
                       labels={"value": "Amount",
                         "variable": "KPI"})
+        fig.write_html("./Demo_Files/Company/CashProfits.html")
         return fig
     
     def getProductionCostsFigure():
@@ -141,4 +143,5 @@ class companyVisualization:
         })
         
         fig = px.bar(df, x="Date", y="Amount", color="Cost Type")
+        fig.write_html("./Demo_Files/Company/ProductionCosts.html")
         return fig

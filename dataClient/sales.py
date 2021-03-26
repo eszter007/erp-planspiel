@@ -93,6 +93,7 @@ class salesVisualization:
         df = df.sort_values("Material")
 
         fig = px.bar(df, x="Date", y="Quantity", color="Material", hover_data=["Price", "Area", "Customer"])
+        fig.write_html("./Demo_Files/Sales/AmountSold.html")
         return fig
     
     def getAmountSoldPerDistributionChannelFigure():
@@ -108,6 +109,7 @@ class salesVisualization:
         df = df.sort_values("Material")
 
         fig = px.bar(df, x="Date", y="Quantity", color="Customer", hover_data=["Price", "Area", "Material"])
+        fig.write_html("./Demo_Files/Sales/AmountSoldPerDistributionChannel.html")
         return fig
     
     def getMarginFigure():
@@ -122,6 +124,7 @@ class salesVisualization:
         df = df.sort_values("Material")
 
         fig = px.scatter(df, x="Date", y="Margin", color="Material", hover_data=["Price", "Variable Cost"])
+        fig.write_html("./Demo_Files/Sales/Margin.html")
         return fig
     
     def getCostFigure():
@@ -134,6 +137,7 @@ class salesVisualization:
         df = df.sort_values("Material")
 
         fig = px.line(df, x="Date", y="Cost per Unit", color="Material")
+        fig.write_html("./Demo_Files/Sales/Costs.html")
         return fig
 
     def getSalePerAreaFigure():
@@ -148,6 +152,7 @@ class salesVisualization:
 
         fig = px.bar(df, x="Area", y="Quantity", color="Material", hover_data=["Price"], barmode="group")
         fig.update_traces(marker_line_width=0)
+        fig.write_html("./Demo_Files/Sales/SalesPerArea.html")
         return fig
     
     def getMostPopularProductFigure():
@@ -160,6 +165,7 @@ class salesVisualization:
         })
         fig = px.bar(df, x="Material", y="Quantity", color="Area", hover_data=["Price"])
         fig.update_traces(marker_line_width=0)
+        fig.write_html("./Demo_Files/Sales/MostPopular.html")
         return fig
     
     def getOwnPricesOverTime():
@@ -174,5 +180,5 @@ class salesVisualization:
         
         fig = px.scatter(df, x="Date", y="Price", hover_data=["Customer"], color="Material", color_discrete_sequence=h.palette)
         fig.update_yaxes(dtick=0.5) 
-        
+        fig.write_html("./Demo_Files/Sales/OwnPricesOverTime.html")
         return fig

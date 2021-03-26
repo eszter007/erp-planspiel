@@ -94,6 +94,7 @@ class productionVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Yield", color="Material")
+        fig.write_html("./Demo_Files/Production/ProductionFigure.html")
         return fig
     
     #
@@ -110,6 +111,7 @@ class productionVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Target Quantity", color="Material")
+        fig.write_html("./Demo_Files/Production/TargetQuantity.html")
         return fig
     
     def getConfirmedQuantityFigure():
@@ -122,6 +124,7 @@ class productionVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Confirmed Quantity", color="Material")
+        fig.write_html("./Demo_Files/Production/ConfirmedQuantity.html")
         return fig
     
     #
@@ -138,6 +141,7 @@ class productionVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Purchase Order", color="Material")
+        fig.write_html("./Demo_Files/Production/PurchaseOrder.html")
         return fig
     
     def getProductivityFigure():
@@ -156,4 +160,5 @@ class productionVisualization:
         df.columns = ["Month", "Productivity in %"]
 
         fig = px.line(df, x="Month", y="Productivity in %")
+        fig.write_html("./Demo_Files/Production/ProductivityInPercent.html")
         return fig
