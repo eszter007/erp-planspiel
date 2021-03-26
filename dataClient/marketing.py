@@ -18,17 +18,19 @@ class marketingData:
     
         p = service.theservice.entity_sets.Marketing_Expenses.get_entities()
         for p_ in p.execute():
-            description = p_.MATERIAL_DESCRIPTION 
             date = p_.SIM_DATE
-            date = h.formatDate(date)
-            area = p_.AREA
-            amount = p_.AMOUNT
-            
-            if size in description:
-                dates.append(date)
-                materials.append(description)
-                amounts.append(float(amount))
-                areas.append(area)
+            if h.correctDateFormat(date):
+                date = h.formatDate(date)
+                description = p_.MATERIAL_DESCRIPTION
+                area = p_.AREA
+                amount = p_.AMOUNT
+                
+                if size in description:
+                    dates.append(date)
+                    materials.append(description)
+                    amounts.append(float(amount))
+                    areas.append(area)
+            else: continue
         return [dates, materials, areas, amounts]
 
 # Visualization

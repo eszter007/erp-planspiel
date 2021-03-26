@@ -16,17 +16,19 @@ class inventoryData:
         dates = []
     
         p = service.theservice.entity_sets.Inventory.get_entities()
-        for p_ in p.execute():
-            description = p_.MATERIAL_DESCRIPTION 
+        for p_ in p.execute(): 
             date = p_.SIM_DATE
-            date = h.formatDate(date)
-            balance = p_.INVENTORY_OPENING_BALANCE
-            materialType = p_.MATERIAL_TYPE
-            
-            if size in description:
-                materials.append(description)
-                balances.append(float(balance))
-                dates.append(date)
+            if h.correctDateFormat(date):
+                date = h.formatDate(date)
+                description = p_.MATERIAL_DESCRIPTION 
+                balance = p_.INVENTORY_OPENING_BALANCE
+                materialType = p_.MATERIAL_TYPE
+                
+                if size in description:
+                    materials.append(description)
+                    balances.append(float(balance))
+                    dates.append(date)
+            else: continue
         return [materials, types, balances, dates]
 
 # Visualization

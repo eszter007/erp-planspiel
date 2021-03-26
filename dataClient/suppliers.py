@@ -17,16 +17,18 @@ class supplierData:
     
         p = service.theservice.entity_sets.Suppliers_Prices.get_entities()
         for p_ in p.execute():
-            material = p_.MATERIAL_DESCRIPTION
             date = p_.SIM_DATE
-            date = h.formatDate(date)
-            price = p_.NET_PRICE
-            vendor = p_.VENDOR_NAME
-            
-            materials.append(material)
-            dates.append(date)
-            prices.append(float(price))
-            vendors.append(vendor)
+            if h.correctDateFormat(date):
+                material = p_.MATERIAL_DESCRIPTION
+                date = h.formatDate(date)
+                price = p_.NET_PRICE
+                vendor = p_.VENDOR_NAME
+                
+                materials.append(material)
+                dates.append(date)
+                prices.append(float(price))
+                vendors.append(vendor)
+            else: continue
         return [materials, dates, prices, vendors]
 
 # Visualization

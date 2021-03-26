@@ -21,27 +21,29 @@ class salesData:
         
         p = service.theservice.entity_sets.Sales.get_entities()
         for p_ in p.execute():
-            material = p_.MATERIAL_DESCRIPTION
             date = p_.SIM_DATE
-            date = h.formatDate(date)
-            quantity = p_.QUANTITY
-            quantity = float(quantity)
-            price = p_.NET_PRICE
-            price = float(price)
-            cost = p_.COST
-            cost = float(cost) / quantity
-            area = p_.AREA
-            customer = p_.DISTRIBUTION_CHANNEL
-            customer = h.getCustomer(customer)
-            
-            materials.append(material)
-            dates.append(date)
-            quantities.append(quantity)
-            prices.append(price)
-            costs.append(cost)
-            margins.append(price-cost)
-            areas.append(area)
-            customers.append(customer)
+            if h.correctDateFormat(date):
+                date = h.formatDate(date)
+                material = p_.MATERIAL_DESCRIPTION
+                quantity = p_.QUANTITY
+                quantity = float(quantity)
+                price = p_.NET_PRICE
+                price = float(price)
+                cost = p_.COST
+                cost = float(cost) / quantity
+                area = p_.AREA
+                customer = p_.DISTRIBUTION_CHANNEL
+                customer = h.getCustomer(customer)
+                
+                materials.append(material)
+                dates.append(date)
+                quantities.append(quantity)
+                prices.append(price)
+                costs.append(cost)
+                margins.append(price-cost)
+                areas.append(area)
+                customers.append(customer)
+            else: continue
             
         return [materials, dates, quantities, prices, costs, margins, areas, customers]
     
@@ -54,16 +56,18 @@ class salesData:
         p = service.theservice.entity_sets.Pricing_Conditions.get_entities()
         for p_ in p.execute():
             date = p_.SIM_DATE
-            date = h.formatDate(date)
-            material = p_.MATERIAL_DESCRIPTION
-            customer = p_.DC_NAME
-            price = p_.PRICE
-            price = float(price)
-            
-            dates.append(date)
-            materials.append(material)
-            customers.append(customer)
-            prices.append(price)
+            if h.correctDateFormat(date):
+                date = h.formatDate(date)
+                material = p_.MATERIAL_DESCRIPTION
+                customer = p_.DC_NAME
+                price = p_.PRICE
+                price = float(price)
+                
+                dates.append(date)
+                materials.append(material)
+                customers.append(customer)
+                prices.append(price)
+            else: continue
 
         return [dates, materials, customers, prices]
             

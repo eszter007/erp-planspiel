@@ -15,14 +15,16 @@ class productionData:
     
         p = service.theservice.entity_sets.Production.get_entities()
         for p_ in p.execute():
-            material = p_.MATERIAL_DESCRIPTION
             date = p_.SIM_DATE
-            date = h.formatDate(date)
-            pyield = p_.YIELD
-            
-            materials.append(material)
-            dates.append(date)
-            yields.append(int(pyield))
+            if h.correctDateFormat(date):
+                date = h.formatDate(date)
+                material = p_.MATERIAL_DESCRIPTION
+                pyield = p_.YIELD
+                
+                materials.append(material)
+                dates.append(date)
+                yields.append(int(pyield))
+            else: continue
         return [dates, materials, yields]
     
     def fetchProductionOrderData():
@@ -34,21 +36,23 @@ class productionData:
     
         p = service.theservice.entity_sets.Production_Orders.get_entities()
         for p_ in p.execute():
-            material = p_.MATERIAL_DESCRIPTION
             date = p_.SIM_DATE
-            date = h.formatDate(date)
-            productionOrder = p_.PRODUCTION_ORDER
-            productionOrder = int(productionOrder)
-            targetQuantity = p_.TARGET_QUANTITY
-            targetQuantity = int(targetQuantity)
-            confirmedQuantity = p_.CONFIRMED_QUANTITY
-            confirmedQuantity = int(confirmedQuantity)
-            
-            materials.append(material)
-            dates.append(date)
-            productionOrders.append(productionOrder)
-            targetQuantities.append(targetQuantity)
-            confirmedQuantities.append(confirmedQuantity)
+            if h.correctDateFormat(date):
+                date = h.formatDate(date)
+                material = p_.MATERIAL_DESCRIPTION
+                productionOrder = p_.PRODUCTION_ORDER
+                productionOrder = int(productionOrder)
+                targetQuantity = p_.TARGET_QUANTITY
+                targetQuantity = int(targetQuantity)
+                confirmedQuantity = p_.CONFIRMED_QUANTITY
+                confirmedQuantity = int(confirmedQuantity)
+                
+                materials.append(material)
+                dates.append(date)
+                productionOrders.append(productionOrder)
+                targetQuantities.append(targetQuantity)
+                confirmedQuantities.append(confirmedQuantity)
+            else: continue
         return [dates, materials, productionOrders, targetQuantities, confirmedQuantities]
     
     def fetchPurchaseOrderData():

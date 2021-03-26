@@ -24,29 +24,31 @@ class companyData:
         p = service.theservice.entity_sets.Company_Valuation.get_entities()
         for p_ in p.execute():  
             date = p_.SIM_DATE
-            date = h.formatDate(date)
-            
-            cash = p_.BANK_CASH_ACCOUNT
-            accReceivable = p_.ACCOUNTS_RECEIVABLE
-            loan = p_.BANK_LOAN
-            accPayable = p_.ACCOUNTS_PAYABLE
-            profit = p_.PROFIT
-            
-            debtLoading = p_.DEBT_LOADING
-            creditRating = p_.CREDIT_RATING
-            val = p_.COMPANY_VALUATION
-            
-            dates.append(date)
-            
-            cashHistory.append(float(cash))
-            accReceivables.append(float(accReceivable))
-            loanHistory.append(float(loan))
-            accPayables.append(float(accPayable))
-            profits.append(float(profit))
-            
-            debtLoadings.append(float(debtLoading))
-            creditRatings.append(creditRating)
-            valuation.append(float(val))
+            if h.correctDateFormat(date):
+                date = h.formatDate(date)
+                
+                cash = p_.BANK_CASH_ACCOUNT
+                accReceivable = p_.ACCOUNTS_RECEIVABLE
+                loan = p_.BANK_LOAN
+                accPayable = p_.ACCOUNTS_PAYABLE
+                profit = p_.PROFIT
+                
+                debtLoading = p_.DEBT_LOADING
+                creditRating = p_.CREDIT_RATING
+                val = p_.COMPANY_VALUATION
+                
+                dates.append(date)
+                
+                cashHistory.append(float(cash))
+                accReceivables.append(float(accReceivable))
+                loanHistory.append(float(loan))
+                accPayables.append(float(accPayable))
+                profits.append(float(profit))
+                
+                debtLoadings.append(float(debtLoading))
+                creditRatings.append(creditRating)
+                valuation.append(float(val))
+            else: continue
             
         return [dates, cashHistory, accReceivables, loanHistory, accPayables, profits, debtLoadings, creditRatings, valuation]
     
@@ -78,7 +80,6 @@ import plotly.express as px
 
 class companyVisualization:
     fetchedData = companyData.fetchCompanyValuation()
-    fetchedCosts = companyData.fetchCosts()
     productionCosts = companyData.fetchProductionCosts()
     
     def getCompanyValuationFigure():

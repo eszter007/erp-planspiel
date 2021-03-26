@@ -8,6 +8,11 @@ class helper:
         date = datetime.strptime(date, '%m/%d').replace(year=2021)
         return date
     
+    def correctDateFormat(date):
+        if date[:2] == "13" or not date:
+            return False
+        else: return True
+    
     def getCustomer(customer):
         if customer == "12":
             customer = "Grocery Chains"
