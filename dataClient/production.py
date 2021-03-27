@@ -154,7 +154,10 @@ class productionVisualization:
             "June": 81.736,
             "July": 91.666,
             "August": 86.429,
-            "September": 89.999
+            "September": 89.999,
+            "October": 89.166,
+            "November": 80.943,
+            "December": 79.524
         }
         df = pd.DataFrame.from_dict(list(data.items()))
         df.columns = ["Month", "Productivity in %"]
