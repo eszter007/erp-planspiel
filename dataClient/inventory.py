@@ -9,7 +9,7 @@ from dataClient.helper import helper as h
 
 class inventoryData:
     
-    def fetch(size):
+    def fetch(size, matType):
         materials = []
         types = []
         balances = []
@@ -24,7 +24,7 @@ class inventoryData:
                 balance = p_.INVENTORY_OPENING_BALANCE
                 materialType = p_.MATERIAL_TYPE
                 
-                if size in description:
+                if size in description and matType in materialType:
                     materials.append(description)
                     balances.append(float(balance))
                     dates.append(date)
@@ -35,14 +35,17 @@ class inventoryData:
 import plotly.express as px
 
 class inventoryVisualization:
-    def getFigure(size):
+    def getFigure(size, matType):
         df = pd.DataFrame({
-            "Amount": inventoryData.fetch(size)[2],
-            "Date": inventoryData.fetch(size)[3],
-            "Material": inventoryData.fetch(size)[0]
+            "Amount": inventoryData.fetch(size, matType)[2],
+            "Date": inventoryData.fetch(size, matType)[3],
+            "Material": inventoryData.fetch(size, matType)[0]
         })
         df = df.sort_values("Material")
 
         fig = px.bar(df, x="Date", y="Amount", color="Material")
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Inventory/" + size + "inventory.html")
         return fig

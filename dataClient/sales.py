@@ -93,6 +93,9 @@ class salesVisualization:
         df = df.sort_values("Material")
 
         fig = px.bar(df, x="Date", y="Quantity", color="Material", hover_data=["Price", "Area", "Customer"])
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Sales/AmountSold.html")
         return fig
     
@@ -109,6 +112,9 @@ class salesVisualization:
         df = df.sort_values("Material")
 
         fig = px.bar(df, x="Date", y="Quantity", color="Customer", hover_data=["Price", "Area", "Material"])
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Sales/AmountSoldPerDistributionChannel.html")
         return fig
     
@@ -124,6 +130,9 @@ class salesVisualization:
         df = df.sort_values("Material")
 
         fig = px.scatter(df, x="Date", y="Margin", color="Material", hover_data=["Price", "Variable Cost"])
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Sales/Margin.html")
         return fig
     
@@ -137,6 +146,9 @@ class salesVisualization:
         df = df.sort_values("Material")
 
         fig = px.line(df, x="Date", y="Cost per Unit", color="Material")
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Sales/Costs.html")
         return fig
 
@@ -152,6 +164,9 @@ class salesVisualization:
 
         fig = px.bar(df, x="Area", y="Quantity", color="Material", hover_data=["Price"], barmode="group")
         fig.update_traces(marker_line_width=0)
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Sales/SalesPerArea.html")
         return fig
     
@@ -165,6 +180,9 @@ class salesVisualization:
         })
         fig = px.bar(df, x="Material", y="Quantity", color="Area", hover_data=["Price"])
         fig.update_traces(marker_line_width=0)
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Sales/MostPopular.html")
         return fig
     
@@ -180,5 +198,8 @@ class salesVisualization:
         
         fig = px.scatter(df, x="Date", y="Price", hover_data=["Customer"], color="Material", color_discrete_sequence=h.palette)
         fig.update_yaxes(dtick=0.5) 
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Sales/OwnPricesOverTime.html")
         return fig

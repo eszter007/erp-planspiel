@@ -91,6 +91,9 @@ class companyVisualization:
         })
 
         fig = px.line(df, x="Date", y="Company Valuation", hover_data=["Credit Rating"])
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Company/companyValuation.html")
         return fig
     
@@ -112,6 +115,9 @@ class companyVisualization:
                       hover_data=["Credit Rating"],
                       labels={"value": "Amount",
                         "variable": "KPI"})
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Company/DebtLoadingProfits.html")
         return fig
     
@@ -131,6 +137,9 @@ class companyVisualization:
                       hover_data=["Credit Rating"],
                       labels={"value": "Amount",
                         "variable": "KPI"})
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Company/CashProfits.html")
         return fig
     
@@ -141,7 +150,9 @@ class companyVisualization:
             "Cost Type": data[1],
             "Amount": data[2]
         })
-        
         fig = px.bar(df, x="Date", y="Amount", color="Cost Type")
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Company/ProductionCosts.html")
         return fig

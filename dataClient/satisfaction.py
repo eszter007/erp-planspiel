@@ -63,6 +63,9 @@ class satisfactionVisualization:
         df = df.groupby(["Date", "Material"]).mean().reset_index()
 
         fig = px.line(df, x="Date", y="Average Score", color="Material")
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Satisfaction/SatisfactionFigure.html")
         return fig
 
@@ -77,6 +80,9 @@ class satisfactionVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Area", y="Average Score", color="Material", barmode="group")
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Satisfaction/SatisfactionPerAreaFigure.html")
         return fig
     
@@ -91,5 +97,8 @@ class satisfactionVisualization:
         
         fig = px.bar(df, x="Material", y="Average Score")
         fig.update_yaxes(dtick=0.5) 
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Satisfaction/SatisfactionPerProductFigure.html")
         return fig

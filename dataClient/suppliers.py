@@ -46,6 +46,9 @@ class supplierVisualization:
         })
         
         fig = px.line(df, x="Date", y="Price", color="Material", hover_data=["Material", "Price", "Vendor"])
-        fig.update_yaxes(dtick=0.5) 
+        fig.update_yaxes(dtick=0.5)
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Suppliers/Figure.html")
         return fig

@@ -146,6 +146,9 @@ class marketVisualization:
                         "x": "Products",
                         "value": "Price",
                         "variable": "Type"})
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
         fig.write_html("./Demo_Files/Market/AveragePrice.html")
         return fig
     
