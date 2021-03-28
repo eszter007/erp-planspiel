@@ -61,6 +61,7 @@ class marketVisualization:
                      barmode="group", 
                      color_discrete_sequence=h.palette)
         fig.update_traces(marker_line_width=0)
+        fig.write_html("./Demo_Files/Market/QuantityPerAreaAndMaterial.html")
         return fig
     
     def getMostPopularProduct():
@@ -78,6 +79,7 @@ class marketVisualization:
                      color="Area", 
                      hover_data=["Price"])
         fig.update_traces(marker_line_width=0)
+        fig.write_html("./Demo_Files/Market/MostPopularProduct.html")
         return fig
     
     def getPriceAndAmount():
@@ -97,7 +99,7 @@ class marketVisualization:
                          hover_data=["Area", "Quantity", "Price"], 
                          color_discrete_sequence=h.palette)
         fig.update_xaxes(dtick=0.5) 
-        
+        fig.write_html("./Demo_Files/Market/PriceAndAmount.html")
         return fig
     
     def getAveragePrice():
@@ -144,6 +146,10 @@ class marketVisualization:
                         "x": "Products",
                         "value": "Price",
                         "variable": "Type"})
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
+        fig.write_html("./Demo_Files/Market/AveragePrice.html")
         return fig
     
     # Over time data
@@ -165,7 +171,7 @@ class marketVisualization:
                     color_discrete_sequence=h.palette)
         fig.update_yaxes(dtick=0.5) 
         fig.update_xaxes(dtick=1) 
-        
+        fig.write_html("./Demo_Files/Market/PricesOverTime.html")
         return fig
     
     def getPopularityOverTime():
@@ -185,6 +191,7 @@ class marketVisualization:
                     hover_data=["Price"], 
                     color_discrete_sequence=h.palette)
         fig.update_traces(marker_line_width=0)
+        fig.write_html("./Demo_Files/Market/PopularityOverTime.html")
         return fig
     
     def getPurchaseVolumePeriodsFigure():
@@ -205,4 +212,5 @@ class marketVisualization:
                     hover_data=["Price", "Quantity"],
                     color_discrete_sequence=h.palette)
         fig.update_traces(marker_line_width=0)
+        fig.write_html("./Demo_Files/Market/PurchaseVolumePeriodsFigure.html")
         return fig

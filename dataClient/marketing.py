@@ -49,6 +49,10 @@ class marketingVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Amount", color="Material", hover_name="Area", color_discrete_sequence=h.palette)
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
+        fig.write_html("./Demo_Files/Marketing/FigureByTime.html")
         return fig
     
     def getFigureByArea():
@@ -62,5 +66,9 @@ class marketingVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Amount", color="Area", hover_name="Material")
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
+        fig.write_html("./Demo_Files/Marketing/FigureByArea.html")
         return fig
         

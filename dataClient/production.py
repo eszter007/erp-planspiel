@@ -94,6 +94,10 @@ class productionVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Yield", color="Material")
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
+        fig.write_html("./Demo_Files/Production/ProductionFigure.html")
         return fig
     
     #
@@ -110,6 +114,10 @@ class productionVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Target Quantity", color="Material")
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
+        fig.write_html("./Demo_Files/Production/TargetQuantity.html")
         return fig
     
     def getConfirmedQuantityFigure():
@@ -122,6 +130,10 @@ class productionVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Confirmed Quantity", color="Material")
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
+        fig.write_html("./Demo_Files/Production/ConfirmedQuantity.html")
         return fig
     
     #
@@ -138,6 +150,10 @@ class productionVisualization:
         df = df.sort_values("Material")
         
         fig = px.bar(df, x="Date", y="Purchase Order", color="Material")
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
+        fig.write_html("./Demo_Files/Production/PurchaseOrder.html")
         return fig
     
     def getProductivityFigure():
@@ -150,10 +166,17 @@ class productionVisualization:
             "June": 81.736,
             "July": 91.666,
             "August": 86.429,
-            "September": 89.999
+            "September": 89.999,
+            "October": 89.166,
+            "November": 80.943,
+            "December": 79.524
         }
         df = pd.DataFrame.from_dict(list(data.items()))
         df.columns = ["Month", "Productivity in %"]
 
         fig = px.line(df, x="Month", y="Productivity in %")
+        fig.update_xaxes(
+            dtick="M1",
+            tickformat="%b\n%Y")
+        fig.write_html("./Demo_Files/Production/ProductivityInPercent.html")
         return fig
